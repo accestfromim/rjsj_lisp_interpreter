@@ -8,7 +8,7 @@ std::string BooleanValue::toString() const {
 }
 
 std::string NumericValue::toString() const {
-    if (value - int(value) < 1e-10) 
+    if (value - int(value) < 1e-6) 
         return std::to_string(int(value));
     else 
         return std::to_string(value);
@@ -27,15 +27,17 @@ std::string NilValue::toString() const {
 std::string SymbolValue::toString() const {
     return value;
 }
+
 void makeList(std::string& tgt) {
     for (int i = 0; i < tgt.length(); i++)
         if (tgt.at(i) == '\"')
             while (tgt.at(++i) != '\"') /*do nothing*/;
         else if (tgt.at(i) == '(' || tgt.at(i) == ')')
-            tgt.erase(i, 1), --i;
+            tgt.erase(i--, 1);
     tgt.insert(0, "(");
     tgt.push_back(')');
 }
+
 std::string PairValue::toString() const {
     std::string s;
     s.append(car()->toString());
