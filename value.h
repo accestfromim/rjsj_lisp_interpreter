@@ -94,9 +94,11 @@ public:
         : Value(ValueType::PAIR_VALUE), lhs{l}, rhs{r} {}
     const ValuePtr& car() const{
         return lhs;
+        //return const_cast<ValuePtr&>(lhs);
     }
     const ValuePtr& cdr() const{
         return rhs;
+        //return const_cast<ValuePtr&>(rhs);
     }
     std::string toString() const override;
 };
