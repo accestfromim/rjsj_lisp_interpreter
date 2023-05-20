@@ -18,7 +18,7 @@ struct TestCtx {
 };
 
 int main() {
-    RJSJ_TEST(TestCtx, Lv2, Lv3);
+    //RJSJ_TEST(TestCtx, Lv2, Lv3);
     //ValuePtr a = std::make_shared<NumericValue>(42);
     //ValuePtr b = std::make_shared<BooleanValue>(false);
     //ValuePtr c = std::make_shared<SymbolValue>("eq?");
@@ -32,27 +32,27 @@ int main() {
     //          << d->toString() << '\n'
     //          << e->toString() << '\n'
     //          << f->toString() << std::endl;
-    //EvalEnv env;
-    //while (true) {
-    //    try {
-    //        std::cout << ">>> " ;
-    //        std::string line;
-    //        std::getline(std::cin, line);
-    //        if (std::cin.eof()) {
-    //            std::exit(0);
-    //        }
-    //        auto tokens = Tokenizer::tokenize(line);
-    //        Parser parser(std::move(tokens));
-    //        if (parser.empty()) continue;
-    //        auto value = parser.parse();
-    //        auto result = env.eval(std::move(value));
-    //        std::cout << result->toString() << std::endl;
-    //        //std::cout << value->toString() << std::endl;
-    //        /*for (auto& token : tokens) {
-    //            std::cout << *token << std::endl;
-    //        }*/
-    //    } catch (std::runtime_error& e) {
-    //        std::cerr << "Error: " << e.what() << std::endl;
-    //    }
-    //}
+    EvalEnv env;
+    while (true) {
+        try {
+            std::cout << ">>> " ;
+            std::string line;
+            std::getline(std::cin, line);
+            if (std::cin.eof()) {
+                std::exit(0);
+            }
+            auto tokens = Tokenizer::tokenize(line);
+            Parser parser(std::move(tokens));
+            if (parser.empty()) continue;
+            auto value = parser.parse();
+            auto result = env.eval(std::move(value));
+            std::cout << result->toString() << std::endl;
+            //std::cout << value->toString() << std::endl;
+            /*for (auto& token : tokens) {
+                std::cout << *token << std::endl;
+            }*/
+        } catch (std::runtime_error& e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+        }
+    }
 }

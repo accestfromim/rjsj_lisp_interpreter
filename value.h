@@ -1,6 +1,10 @@
 #ifndef VALUE_H
 #define VALUE_H
 #include<iostream>
+#include<vector>
+
+#include"error.h"
+
 enum class ValueType {
     BOOLEAN_VALUE,
     NUMERIC_VALUE,
@@ -8,10 +12,11 @@ enum class ValueType {
     NIL_VALUE,
     SYMBOL_VALUE,
     PAIR_VALUE,
-
+    BUILTINPROC_VALUE
 };
 class Value;
 using ValuePtr = std::shared_ptr<Value>;
+using BuiltinFuncType = ValuePtr(const std::vector<ValuePtr>&);
 //基类在这
 class Value {
 private:
@@ -101,5 +106,24 @@ public:
         //return const_cast<ValuePtr&>(rhs);
     }
     std::string toString() const override;
+    std::vector<ValuePtr> toVector() const;
+};
+//内置过程类
+class BuiltinProcValue : public Value {
+private:
+    BuiltinFuncType* func{nullptr}; 
+    // [...]
+
+public:
+    BuiltinProcValue(BuiltinFuncType* f):func{f},Value(ValueType::BUILTINPROC_VALUE) {}
+    // 直接返回 #<procedure> 就可以，我们不做更多要求。
+    BuiltinFuncType* getFunc() const {
+        return func;
+    }
+    std::string toString() const override;
+    /*operator NumericValue() {
+        throw SyntaxError("Can\'t turn Proc to Numeric");
+        return NumericValue(0);
+    }*/
 };
 #endif

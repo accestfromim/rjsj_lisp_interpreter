@@ -48,3 +48,22 @@ std::string PairValue::toString() const {
     makeList(s);
     return s;
 }
+
+std::vector<ValuePtr> PairValue::toVector() const {
+    std::vector<ValuePtr> result{this->car()};
+
+    if (this->cdr()->getType() == ValueType::NIL_VALUE) {
+        return result;
+    } else if (this->cdr()->getType() != ValueType::PAIR_VALUE) {
+        result.push_back(this->cdr());
+        return result;
+    } else {
+        std::vector<ValuePtr> _cdr=static_cast<PairValue&>(*this->cdr()).toVector();
+        for (auto i : _cdr) result.push_back(i);
+    }
+    return result;
+}
+
+std::string BuiltinProcValue::toString() const {
+    return std::string("#<procedure>");
+}
