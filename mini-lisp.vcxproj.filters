@@ -44,9 +44,6 @@
     <ClInclude Include="token.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="tokenizer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="rjsj_test.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -60,6 +57,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="builtins.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tokenizer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

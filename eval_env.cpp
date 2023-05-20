@@ -1,56 +1,60 @@
+#include "eval_env.h"
+
 #include <algorithm>
+#include <cassert>
 #include <iterator>
 
-#include "eval_env.h"
 #include "error.h"
-#include<cassert>
 
-//允许接收对子作为求值的eval
-//ValuePtr EvalEnv::reinterpretDefinedValue(ValuePtr definedValue) {
-//    if (definedValue->getType() == ValueType::BOOLEAN_VALUE ||
-//        definedValue->getType() == ValueType::NUMERIC_VALUE ||
-//        definedValue->getType() == ValueType::STRING_VALUE) {
-//        return definedValue;
-//    } else 
-//    if (definedValue->getType() == ValueType::PAIR_VALUE) {
-//        if (static_cast<PairValue&>(*definedValue).cdr()->getType() ==
-//            ValueType::NIL_VALUE)
-//            return reinterpretDefinedValue(static_cast<PairValue&>(*definedValue).car());
-//         else {
-//            return definedValue;
-//        }
-//    } else if (definedValue->getType() == ValueType::SYMBOL_VALUE) {
-//        // assert(static_cast<SymbolValue&>(*expr).getValue() == "accest");
-//        auto value = dict.find(static_cast<SymbolValue&>(*definedValue).getValue());
-//        if (value != dict.end())  // return value->second;
-//            return reinterpretDefinedValue(value->second);
-//        else
-//            throw LispError("Not Defined Symbol \'" + definedValue->toString() +
-//                            "\'");
-//    } else if (definedValue->getType() == ValueType::NIL_VALUE) {
-//        throw LispError("Evaluating nil is prohibited.");
-//    } else {
-//        throw LispError("Inner System Error");
-//    }
-//}
-
-
+// 允许接收对子作为求值的eval
+// ValuePtr EvalEnv::reinterpretDefinedValue(ValuePtr definedValue) {
+//     if (definedValue->getType() == ValueType::BOOLEAN_VALUE ||
+//         definedValue->getType() == ValueType::NUMERIC_VALUE ||
+//         definedValue->getType() == ValueType::STRING_VALUE) {
+//         return definedValue;
+//     } else
+//     if (definedValue->getType() == ValueType::PAIR_VALUE) {
+//         if (static_cast<PairValue&>(*definedValue).cdr()->getType() ==
+//             ValueType::NIL_VALUE)
+//             return
+//             reinterpretDefinedValue(static_cast<PairValue&>(*definedValue).car());
+//          else {
+//             return definedValue;
+//         }
+//     } else if (definedValue->getType() == ValueType::SYMBOL_VALUE) {
+//         // assert(static_cast<SymbolValue&>(*expr).getValue() == "accest");
+//         auto value =
+//         dict.find(static_cast<SymbolValue&>(*definedValue).getValue()); if
+//         (value != dict.end())  // return value->second;
+//             return reinterpretDefinedValue(value->second);
+//         else
+//             throw LispError("Not Defined Symbol \'" +
+//             definedValue->toString() +
+//                             "\'");
+//     } else if (definedValue->getType() == ValueType::NIL_VALUE) {
+//         throw LispError("Evaluating nil is prohibited.");
+//     } else {
+//         throw LispError("Inner System Error");
+//     }
+// }
 
 /// <summary>
-/// 
+///
 /// </summary>
 /// <param name="expr"></param>
 /// <returns></returns>
 ValuePtr EvalEnv::eval(ValuePtr expr) {
-    if (expr->getType()==ValueType::BOOLEAN_VALUE
-        ||expr->getType()==ValueType::NUMERIC_VALUE
-        ||expr->getType()==ValueType::STRING_VALUE) {
+    if (expr->getType() == ValueType::BOOLEAN_VALUE ||
+        expr->getType() == ValueType::NUMERIC_VALUE ||
+        expr->getType() == ValueType::STRING_VALUE) {
         return expr;
-    } else if (expr->getType()==ValueType::PAIR_VALUE) {
+    } else if (expr->getType() == ValueType::PAIR_VALUE) {
         auto procedure = static_cast<PairValue&>(*expr).car();
-        if (procedure->getType() != ValueType::SYMBOL_VALUE)
-            throw LispError("Must Start With a procedure");//对子的car必须是过程
-        if (static_cast<SymbolValue&>(*procedure).getValue() == "define") {
+        if (procedure->getType() != ValueType::SYMBOL_VALUE) {
+           // return expr;
+            throw LispError("Must Start With a Procedure");
+        } else if (static_cast<SymbolValue&>(*procedure).getValue() ==
+                   "define") {
             auto definePair = static_cast<PairValue&>(*expr).cdr();
             // // // // // // // // // // //
             if (definePair->getType() != ValueType::PAIR_VALUE)
@@ -64,42 +68,44 @@ ValuePtr EvalEnv::eval(ValuePtr expr) {
                 ValueType::SYMBOL_VALUE)
                 throw LispError("This Type of Value Can't be Defined");
             // // // // // // // // // // // //
-            std::vector<ValuePtr> vec = static_cast<PairValue&>(*definePair).toVector();
+            std::vector<ValuePtr> vec =
+                static_cast<PairValue&>(*definePair).toVector();
             auto hasDefined = dict.find(vec.at(0)->toString());
             if (hasDefined != dict.end()) dict.erase(hasDefined);
-            dict.insert(
-                std::pair<std::string, ValuePtr>(vec.at(0)->toString(),eval(vec.at(1))));
-            //auto hasDefined = dict.find(static_cast<PairValue&>(*definePair)
-            //                                .car()
-            //                                ->toString() /*getvalue()*/);
-            //if (hasDefined != dict.end()) dict.erase(hasDefined);
+            dict.insert(std::pair<std::string, ValuePtr>(vec.at(0)->toString(),
+                                                         eval(vec.at(1))));
+            // auto hasDefined = dict.find(static_cast<PairValue&>(*definePair)
+            //                                 .car()
+            //                                 ->toString() /*getvalue()*/);
+            // if (hasDefined != dict.end()) dict.erase(hasDefined);
 
-            //auto evalable = static_cast<PairValue&>(*definePair).cdr();
-            //assert(evalable->getType() == ValueType::PAIR_VALUE);
+            // auto evalable = static_cast<PairValue&>(*definePair).cdr();
+            // assert(evalable->getType() == ValueType::PAIR_VALUE);
 
-            //dict.insert(std::pair<std::string, ValuePtr>(
-            //    static_cast<SymbolValue&>(
-            //        *static_cast<PairValue&>(*definePair).car())
-            //        .getValue(),
-            //    reinterpretDefinedValue(evalable)));
-            // assert(dict.find("accest") != dict.end());
+            // dict.insert(std::pair<std::string, ValuePtr>(
+            //     static_cast<SymbolValue&>(
+            //         *static_cast<PairValue&>(*definePair).car())
+            //         .getValue(),
+            //     reinterpretDefinedValue(evalable)));
+            //  assert(dict.find("accest") != dict.end());
             return std::make_shared<NilValue>();
         } else {
             ValuePtr proc = eval(static_cast<PairValue&>(*expr).car());
-            std::vector<ValuePtr> args = evalList(static_cast<PairValue&>(*expr).cdr());
-             return apply(proc, args);
-            //throw LispError("Eval::eval::IF_PAIR:IF_DEFINE:ELSE");
+            std::vector<ValuePtr> args =
+                evalList(static_cast<PairValue&>(*expr).cdr());
+            return apply(proc, args);
+            // throw LispError("Eval::eval::IF_PAIR:IF_DEFINE:ELSE");
         }
-    } else if (expr->getType()==ValueType::SYMBOL_VALUE) {
-        //assert(static_cast<SymbolValue&>(*expr).getValue() == "accest");
+    } else if (expr->getType() == ValueType::SYMBOL_VALUE) {
+        // assert(static_cast<SymbolValue&>(*expr).getValue() == "accest");
         auto value = dict.find(static_cast<SymbolValue&>(*expr).getValue());
-        if (value != dict.end()) //return value->second;
-            return eval(value->second);
+        if (value != dict.end())  // return value->second;
+            return value->second;
         else {
             throw LispError("Not Defined Symbol \'" + expr->toString() +
                             "\'");  // getValue看起来标准些，不过实际上一样
         }
-    } else if (expr->getType()==ValueType::BUILTINPROC_VALUE) {
+    } else if (expr->getType() == ValueType::BUILTINPROC_VALUE) {
         return expr;
     } else if (expr->getType() == ValueType::NIL_VALUE) {
         throw LispError("Evaluating nil is prohibited.");
@@ -110,11 +116,11 @@ ValuePtr EvalEnv::eval(ValuePtr expr) {
 
 std::vector<ValuePtr> EvalEnv::evalList(ValuePtr expr) {
     std::vector<ValuePtr> result;
-    if (expr->getType()==ValueType::PAIR_VALUE) {
+    if (expr->getType() == ValueType::PAIR_VALUE) {
         std::ranges::transform(static_cast<PairValue&>(*expr).toVector(),
                                std::back_inserter(result),
-                               [this](ValuePtr v) {return this->eval(v); });
-    }else {
+                               [this](ValuePtr v) { return this->eval(v); });
+    } else {
         if (expr->getType() == ValueType::NIL_VALUE) return result;
         std::ranges::transform(std::vector<ValuePtr>{expr},
                                std::back_inserter(result),
@@ -124,7 +130,7 @@ std::vector<ValuePtr> EvalEnv::evalList(ValuePtr expr) {
 }
 
 ValuePtr EvalEnv::apply(ValuePtr proc, std::vector<ValuePtr>& args) {
-    if (proc->getType()==ValueType::BUILTINPROC_VALUE) {
+    if (proc->getType() == ValueType::BUILTINPROC_VALUE) {
         return static_cast<BuiltinProcValue&>(*proc).getFunc()(args);
     } else {
         throw LispError("Unimplemented");

@@ -18,20 +18,7 @@ struct TestCtx {
 };
 
 int main() {
-    RJSJ_TEST(TestCtx, Lv2, Lv3,Lv4);
-    //ValuePtr a = std::make_shared<NumericValue>(42);
-    //ValuePtr b = std::make_shared<BooleanValue>(false);
-    //ValuePtr c = std::make_shared<SymbolValue>("eq?");
-    //ValuePtr d = std::make_shared<StringValue>("Hello");
-    //ValuePtr e = std::make_shared<NilValue>();
-    //ValuePtr f = std::make_shared<PairValue>(
-    //    c, std::make_shared<PairValue>(a, std::make_shared<PairValue>(d, e)));
-    //std::cout << a->toString() << '\n'
-    //          << b->toString() << '\n'
-    //          << c->toString() << '\n'
-    //          << d->toString() << '\n'
-    //          << e->toString() << '\n'
-    //          << f->toString() << std::endl;
+    //RJSJ_TEST(TestCtx, Lv2, Lv3,Lv4);
     EvalEnv env;
     while (true) {
         try {

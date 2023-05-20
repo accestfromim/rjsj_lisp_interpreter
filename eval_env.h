@@ -15,7 +15,52 @@ public:
         dict.insert(std::pair<std::string, ValuePtr>(
             "+", std::make_shared<BuiltinProcValue>(&add)));
         dict.insert(std::pair<std::string, ValuePtr>(
+            "-", std::make_shared<BuiltinProcValue>(&minus)));
+        dict.insert(std::pair<std::string, ValuePtr>(
             "print", std::make_shared<BuiltinProcValue>(&print)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "*", std::make_shared<BuiltinProcValue>(&multiply)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "/", std::make_shared<BuiltinProcValue>(&devide)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "cons", std::make_shared<BuiltinProcValue>(&cons)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "list", std::make_shared<BuiltinProcValue>(&list)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "list?", std::make_shared<BuiltinProcValue>(&list_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "display", std::make_shared<BuiltinProcValue>(&display)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "exit", std::make_shared<BuiltinProcValue>(&LispExit)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "newline", std::make_shared<BuiltinProcValue>(&newline)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "atom?", std::make_shared<BuiltinProcValue>(&atom_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "boolean?", std::make_shared<BuiltinProcValue>(&boolean_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "integer?", std::make_shared<BuiltinProcValue>(&integer_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "number?", std::make_shared<BuiltinProcValue>(&number_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "null?", std::make_shared<BuiltinProcValue>(&null_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "pair?", std::make_shared<BuiltinProcValue>(&pair_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "procedure?", std::make_shared<BuiltinProcValue>(&procedure_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "string?", std::make_shared<BuiltinProcValue>(&string_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "symbol?", std::make_shared<BuiltinProcValue>(&symbol_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "length", std::make_shared<BuiltinProcValue>(&listLength)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "cdr", std::make_shared<BuiltinProcValue>(&_cdr)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "car", std::make_shared<BuiltinProcValue>(&_car)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "append", std::make_shared<BuiltinProcValue>(&_append)));
+        
     }
    // ValuePtr reinterpretDefinedValue(ValuePtr definedValue);
     ValuePtr eval(ValuePtr expr);
