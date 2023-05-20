@@ -1,3 +1,6 @@
+#include <algorithm>
+#include <iterator>
+
 #include "eval_env.h"
 #include "error.h"
 #include<cassert>
@@ -82,7 +85,10 @@ ValuePtr EvalEnv::eval(ValuePtr expr) {
             // assert(dict.find("accest") != dict.end());
             return std::make_shared<NilValue>();
         } else {
-            throw LispError("Eval::eval::IF_PAIR:IF_DEFINE:ELSE");
+            ValuePtr proc = eval(static_cast<PairValue&>(*expr).car());
+            std::vector<ValuePtr> args = evalList(static_cast<PairValue&>(*expr).cdr());
+             return apply(proc, args);
+            //throw LispError("Eval::eval::IF_PAIR:IF_DEFINE:ELSE");
         }
     } else if (expr->getType()==ValueType::SYMBOL_VALUE) {
         //assert(static_cast<SymbolValue&>(*expr).getValue() == "accest");
@@ -97,6 +103,29 @@ ValuePtr EvalEnv::eval(ValuePtr expr) {
         return expr;
     } else if (expr->getType() == ValueType::NIL_VALUE) {
         throw LispError("Evaluating nil is prohibited.");
+    } else {
+        throw LispError("Unimplemented");
+    }
+}
+
+std::vector<ValuePtr> EvalEnv::evalList(ValuePtr expr) {
+    std::vector<ValuePtr> result;
+    if (expr->getType()==ValueType::PAIR_VALUE) {
+        std::ranges::transform(static_cast<PairValue&>(*expr).toVector(),
+                               std::back_inserter(result),
+                               [this](ValuePtr v) {return this->eval(v); });
+    }else {
+        if (expr->getType() == ValueType::NIL_VALUE) return result;
+        std::ranges::transform(std::vector<ValuePtr>{expr},
+                               std::back_inserter(result),
+                               [this](ValuePtr v) { return this->eval(v); });
+    }
+    return result;
+}
+
+ValuePtr EvalEnv::apply(ValuePtr proc, std::vector<ValuePtr>& args) {
+    if (proc->getType()==ValueType::BUILTINPROC_VALUE) {
+        return static_cast<BuiltinProcValue&>(*proc).getFunc()(args);
     } else {
         throw LispError("Unimplemented");
     }

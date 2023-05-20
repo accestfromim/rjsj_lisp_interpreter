@@ -18,7 +18,7 @@ struct TestCtx {
 };
 
 int main() {
-    //RJSJ_TEST(TestCtx, Lv2, Lv3);
+    RJSJ_TEST(TestCtx, Lv2, Lv3,Lv4);
     //ValuePtr a = std::make_shared<NumericValue>(42);
     //ValuePtr b = std::make_shared<BooleanValue>(false);
     //ValuePtr c = std::make_shared<SymbolValue>("eq?");

@@ -5,6 +5,7 @@
 #include "error.h"
 
 ValuePtr add(const std::vector<ValuePtr>& params);
+ValuePtr print(const std::vector<ValuePtr>& params);
 //ValuePtr addVal = std::make_shared<BuiltinProcValue>(&add);
 
 

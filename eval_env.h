@@ -14,9 +14,13 @@ public:
     EvalEnv() {
         dict.insert(std::pair<std::string, ValuePtr>(
             "+", std::make_shared<BuiltinProcValue>(&add)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "print", std::make_shared<BuiltinProcValue>(&print)));
     }
    // ValuePtr reinterpretDefinedValue(ValuePtr definedValue);
     ValuePtr eval(ValuePtr expr);
+    std::vector<ValuePtr> evalList(ValuePtr);
+    ValuePtr apply(ValuePtr proc,std::vector<ValuePtr>& args);
 };
 
 #endif

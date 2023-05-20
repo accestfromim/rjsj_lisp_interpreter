@@ -10,3 +10,12 @@ ValuePtr add(const std::vector<ValuePtr>& params) {
     }
     return std::make_shared<NumericValue>(result);
 }
+
+ValuePtr print(const std::vector<ValuePtr>& params) {
+    if (params.size() != 1) {
+        throw LispError("Print Just Allow One Element");
+    } else {
+        std::cout << params.at(0)->toString() << std::endl;
+    }
+    return std::make_shared<NilValue>();
+}
