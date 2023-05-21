@@ -74,7 +74,7 @@ ValuePtr multiply(arguementType params) {
     double result = 1;
     for (const auto& i : params) {
         if (i->getType() != ValueType::NUMERIC_VALUE) {
-            throw LispError("Cannot add a non-numeric value.");
+            throw LispError("Cannot multiply a non-numeric value.");
         }
         result *= static_cast<NumericValue&>(*i).getValue();
     }
@@ -243,7 +243,11 @@ ValuePtr symbol_htn(arguementType params) {
         throw LispError("Proc \'symbol?\' Just Allow One Arguement");
 
     
-    return std::make_shared<BooleanValue>(false);
+    if (params.at(0)->getType() == ValueType::SYMBOL_VALUE) {
+        return std::make_shared<BooleanValue>(true);
+    } else {
+        return std::make_shared<BooleanValue>(false);
+    }
     
 }
 
@@ -294,7 +298,7 @@ ValuePtr _append(arguementType params) {
         return std::make_shared<NilValue>();
     } else {
         for (ValuePtr i : params)
-            if (!list_htn(std::vector<ValuePtr>{i})) 
+            if (!static_cast<BooleanValue&>(*list_htn(std::vector<ValuePtr>{i})).getValue()) 
                 throw LispError("Proc \'append\' Can Just Apply to Lists");
         ValuePtr car = params.at(0);
         if (car->getType() == ValueType::NIL_VALUE) {

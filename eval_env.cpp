@@ -5,7 +5,7 @@
 #include <iterator>
 
 #include "error.h"
-
+#include"forms.h"
 // 允许接收对子作为求值的eval
 // ValuePtr EvalEnv::reinterpretDefinedValue(ValuePtr definedValue) {
 //     if (definedValue->getType() == ValueType::BOOLEAN_VALUE ||
@@ -53,42 +53,55 @@ ValuePtr EvalEnv::eval(ValuePtr expr) {
         if (procedure->getType() != ValueType::SYMBOL_VALUE) {
            // return expr;
             throw LispError("Must Start With a Procedure");
-        } else if (static_cast<SymbolValue&>(*procedure).getValue() ==
-                   "define") {
-            auto definePair = static_cast<PairValue&>(*expr).cdr();
-            // // // // // // // // // // //
-            if (definePair->getType() != ValueType::PAIR_VALUE)
-                throw LispError("Procedure \'Define\' Must Has Two Argruments");
+        } else if (SPECIAL_FORMS.find(procedure->toString()) !=
+                   SPECIAL_FORMS.end())
+        { 
+            SpecialFormType* specForm =
+                SPECIAL_FORMS.find(procedure->toString())->second;
+            ValuePtr cdr = static_cast<PairValue&>(*expr).cdr();
+            if (cdr->getType() == ValueType::PAIR_VALUE) {
+                return specForm(static_cast<PairValue&>(*cdr).toVector(),
+                                *this);
+            } else {
+                return specForm(std::vector<ValuePtr>{cdr},
+                                *this);
+            }
+        //(static_cast<SymbolValue&>(*procedure).getValue() ==
+        //           "define") {
+        //    auto definePair = static_cast<PairValue&>(*expr).cdr();
+        //    // // // // // // // // // // //
+        //    if (definePair->getType() != ValueType::PAIR_VALUE)
+        //        throw LispError("Procedure \'Define\' Must Has Two Argruments");
 
-            if (static_cast<PairValue&>(*definePair).cdr()->getType() ==
-                ValueType::NIL_VALUE)
-                throw LispError("Procedure \'Define\' Must Has Two Argruments");
+        //    if (static_cast<PairValue&>(*definePair).cdr()->getType() ==
+        //        ValueType::NIL_VALUE)
+        //        throw LispError("Procedure \'Define\' Must Has Two Argruments");
 
-            if (static_cast<PairValue&>(*definePair).car()->getType() !=
-                ValueType::SYMBOL_VALUE)
-                throw LispError("This Type of Value Can't be Defined");
-            // // // // // // // // // // // //
-            std::vector<ValuePtr> vec =
-                static_cast<PairValue&>(*definePair).toVector();
-            auto hasDefined = dict.find(vec.at(0)->toString());
-            if (hasDefined != dict.end()) dict.erase(hasDefined);
-            dict.insert(std::pair<std::string, ValuePtr>(vec.at(0)->toString(),
-                                                         eval(vec.at(1))));
-            // auto hasDefined = dict.find(static_cast<PairValue&>(*definePair)
-            //                                 .car()
-            //                                 ->toString() /*getvalue()*/);
-            // if (hasDefined != dict.end()) dict.erase(hasDefined);
+        //    if (static_cast<PairValue&>(*definePair).car()->getType() !=
+        //        ValueType::SYMBOL_VALUE)
+        //        throw LispError("This Type of Value Can't be Defined");
+        //    // // // // // // // // // // // //
+        //    std::vector<ValuePtr> vec =
+        //        static_cast<PairValue&>(*definePair).toVector();
+        //    auto hasDefined = dict.find(vec.at(0)->toString());
+        //    if (hasDefined != dict.end()) dict.erase(hasDefined);
+        //    dict.insert(std::pair<std::string, ValuePtr>(vec.at(0)->toString(),
+        //                                                 eval(vec.at(1))));
+        //    // auto hasDefined = dict.find(static_cast<PairValue&>(*definePair)
+        //    //                                 .car()
+        //    //                                 ->toString() /*getvalue()*/);
+        //    // if (hasDefined != dict.end()) dict.erase(hasDefined);
 
-            // auto evalable = static_cast<PairValue&>(*definePair).cdr();
-            // assert(evalable->getType() == ValueType::PAIR_VALUE);
+        //    // auto evalable = static_cast<PairValue&>(*definePair).cdr();
+        //    // assert(evalable->getType() == ValueType::PAIR_VALUE);
 
-            // dict.insert(std::pair<std::string, ValuePtr>(
-            //     static_cast<SymbolValue&>(
-            //         *static_cast<PairValue&>(*definePair).car())
-            //         .getValue(),
-            //     reinterpretDefinedValue(evalable)));
-            //  assert(dict.find("accest") != dict.end());
-            return std::make_shared<NilValue>();
+        //    // dict.insert(std::pair<std::string, ValuePtr>(
+        //    //     static_cast<SymbolValue&>(
+        //    //         *static_cast<PairValue&>(*definePair).car())
+        //    //         .getValue(),
+        //    //     reinterpretDefinedValue(evalable)));
+        //    //  assert(dict.find("accest") != dict.end());
+        //    return std::make_shared<NilValue>();
         } else {
             ValuePtr proc = eval(static_cast<PairValue&>(*expr).car());
             std::vector<ValuePtr> args =
@@ -133,6 +146,6 @@ ValuePtr EvalEnv::apply(ValuePtr proc, std::vector<ValuePtr>& args) {
     if (proc->getType() == ValueType::BUILTINPROC_VALUE) {
         return static_cast<BuiltinProcValue&>(*proc).getFunc()(args);
     } else {
-        throw LispError("Unimplemented");
+        throw LispError("Must Start With a Procedure");
     }
 }

@@ -7,7 +7,7 @@
 #include"builtins.h"
 
 class EvalEnv {
-private:
+public:
     std::unordered_map<std::string, ValuePtr> dict;
 
 public:

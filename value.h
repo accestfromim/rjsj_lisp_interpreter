@@ -12,7 +12,8 @@ enum class ValueType {
     NIL_VALUE,
     SYMBOL_VALUE,
     PAIR_VALUE,
-    BUILTINPROC_VALUE
+    BUILTINPROC_VALUE,
+    LAMBDA_VALUE
 };
 class Value;
 using ValuePtr = std::shared_ptr<Value>;
@@ -125,5 +126,19 @@ public:
         throw SyntaxError("Can\'t turn Proc to Numeric");
         return NumericValue(0);
     }*/
+};
+
+class LambdaValue : public Value {
+private:
+    std::vector<std::string> params;
+    ValuePtr body;
+    // [...]
+public:
+    LambdaValue(const std::vector<std::string>& params,
+                ValuePtr body)
+        : Value(ValueType::LAMBDA_VALUE), params{params}, body{body} {}
+    std::string toString() const override {
+        return std::string("#<procedure>");
+    };  // 如前所述，返回 #<procedure> 即可
 };
 #endif
