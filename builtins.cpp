@@ -164,7 +164,7 @@ ValuePtr boolean_htn(arguementType params) {
     if (params.at(0)->getType() == ValueType::BOOLEAN_VALUE) {
         return std::make_shared<BooleanValue>(true);
     } else {
-        std::make_shared<BooleanValue>(false);
+        return std::make_shared<BooleanValue>(false);
     }
 }
 
@@ -311,3 +311,231 @@ ValuePtr _append(arguementType params) {
         }
     }
 }
+
+ValuePtr _abs(arguementType params) {
+    if (params.size() != 1)
+        throw LispError("Proc \'abs\' Just Allow One Arguement");
+    if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'abs\' Just Allow Numeric Arguement");
+
+    double value = static_cast<NumericValue&>(*params.at(0)).getValue();
+    return std::make_shared<NumericValue>(std::abs(value));
+}
+
+ValuePtr _expt(arguementType params) {
+    if (params.size() != 2)
+        throw LispError("Proc \'expt\' Just Allow Two Arguements");
+    if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'expt\' Just Allow Numeric Arguements");
+    if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'expt\' Just Allow Numeric Arguements");
+    double value1 = static_cast<NumericValue&>(*params.at(0)).getValue();
+    double value2 = static_cast<NumericValue&>(*params.at(1)).getValue();
+    if (value1 == 0 && value2 < 0) 
+        throw LispError("Devided by Zero");
+
+    return std::make_shared<NumericValue>(std::pow(value1,value2));
+}
+
+ValuePtr _quotient(arguementType params) {
+    if (params.size() != 2)
+        throw LispError("Proc \'quotient\' Just Allow Two Arguements");
+    if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'quotient\' Just Allow Numeric Arguements");
+    if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'quotient\' Just Allow Numeric Arguements");
+    double value1 = static_cast<NumericValue&>(*params.at(0)).getValue();
+    double value2 = static_cast<NumericValue&>(*params.at(1)).getValue();
+    if (value2 == 0) 
+        throw LispError("Devided by Zero");
+    return std::make_shared<NumericValue>((int)(value1/value2));
+}
+
+ValuePtr _modulo(arguementType params) {
+    if (params.size() != 2)
+        throw LispError("Proc \'modulo\' Just Allow Two Arguements");
+
+    if (!(static_cast<BooleanValue&>(
+              *integer_htn(std::vector<ValuePtr>{params.at(0)}))
+              .getValue()))
+        throw LispError("Proc \'modulo\' Can Just Apply to Integers");
+    if (!(static_cast<BooleanValue&>(
+              *integer_htn(std::vector<ValuePtr>{params.at(1)}))
+              .getValue()))
+        throw LispError("Proc \'modulo\' Can Just Apply to Integers");
+
+    int value1 = static_cast<NumericValue&>(*params.at(0)).getValue();
+    int value2 = static_cast<NumericValue&>(*params.at(1)).getValue();
+    if (value2 == 0) 
+        throw LispError("Devided by Zero");
+    
+    if (value1 == 0) {
+        return std::make_shared<NumericValue>(value2);
+    } else {
+        int mod = std::abs(value1) % std::abs(value2);
+        if (value1 > 0 && value2 > 0) {
+            return std::make_shared<NumericValue>(mod);
+        } else if (value1 > 0 && value2 < 0) {
+            return std::make_shared<NumericValue>(mod+value2);
+        } else if (value1 < 0 && value2 > 0) {
+            return std::make_shared<NumericValue>(value2 - mod);
+        } else {
+            return std::make_shared<NumericValue>(-mod);
+        }
+    }
+    throw LispError("Inner System Error");
+}
+
+ValuePtr _remainder(arguementType params) {
+    if (params.size() != 2)
+        throw LispError("Proc \'remainder\' Just Allow Two Arguements");
+
+    if (!(static_cast<BooleanValue&>(
+              *integer_htn(std::vector<ValuePtr>{params.at(0)}))
+              .getValue()))
+        throw LispError("Proc \'remainder\' Can Just Apply to Integers");
+    if (!(static_cast<BooleanValue&>(
+              *integer_htn(std::vector<ValuePtr>{params.at(1)}))
+              .getValue()))
+        throw LispError("Proc \'remainder\' Can Just Apply to Integers");
+
+    int value1 = static_cast<NumericValue&>(*params.at(0)).getValue();
+    int value2 = static_cast<NumericValue&>(*params.at(1)).getValue();
+    if (value2 == 0) 
+        throw LispError("Devided by Zero");
+
+    return std::make_shared<NumericValue>(value1-value2*static_cast<NumericValue&>(*_quotient(params)).getValue());
+}
+
+ValuePtr num_equal(arguementType params) {
+    if (params.size() != 2)
+        throw LispError("Proc \'=\' Just Allow Two Arguements");
+    if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'=\' Just Allow Numeric Arguements");
+    if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'=\' Just Allow Numeric Arguements");
+    double value1 = static_cast<NumericValue&>(*params.at(0)).getValue();
+    double value2 = static_cast<NumericValue&>(*params.at(1)).getValue();
+
+    if (std::abs(value1 - value2) < 1e-6) {
+        return std::make_shared<BooleanValue>(true);
+    } else {
+        return std::make_shared<BooleanValue>(false);
+    }
+}
+
+ValuePtr num_less(arguementType params) {
+    if (params.size() != 2)
+        throw LispError("Proc \'<\' Just Allow Two Arguements");
+    if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'<\' Just Allow Numeric Arguements");
+    if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'<\' Just Allow Numeric Arguements");
+    double value1 = static_cast<NumericValue&>(*params.at(0)).getValue();
+    double value2 = static_cast<NumericValue&>(*params.at(1)).getValue();
+
+    if (value1 - value2 < -1e-6) {
+        return std::make_shared<BooleanValue>(true);
+    } else {
+        return std::make_shared<BooleanValue>(false);
+    }
+}
+
+ValuePtr num_greater(arguementType params) {
+    if (params.size() != 2)
+        throw LispError("Proc \'>\' Just Allow Two Arguements");
+    if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'>\' Just Allow Numeric Arguements");
+    if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'>\' Just Allow Numeric Arguements");
+    double value1 = static_cast<NumericValue&>(*params.at(0)).getValue();
+    double value2 = static_cast<NumericValue&>(*params.at(1)).getValue();
+
+    if (value1 - value2 > 1e-6) {
+        return std::make_shared<BooleanValue>(true);
+    } else {
+        return std::make_shared<BooleanValue>(false);
+    }
+}
+
+ValuePtr num_less_or_equal(arguementType params) {
+    if (params.size() != 2)
+        throw LispError("Proc \'<=\' Just Allow Two Arguements");
+    if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'<=\' Just Allow Numeric Arguements");
+    if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'<=\' Just Allow Numeric Arguements");
+    double value1 = static_cast<NumericValue&>(*params.at(0)).getValue();
+    double value2 = static_cast<NumericValue&>(*params.at(1)).getValue();
+
+    if (value1 - value2 < 1e-6) {
+        return std::make_shared<BooleanValue>(true);
+    } else {
+        return std::make_shared<BooleanValue>(false);
+    }
+}
+
+ValuePtr num_greater_or_equal(arguementType params) {
+    if (params.size() != 2)
+        throw LispError("Proc \'>=\' Just Allow Two Arguements");
+    if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'>=\' Just Allow Numeric Arguements");
+    if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'>=\' Just Allow Numeric Arguements");
+    double value1 = static_cast<NumericValue&>(*params.at(0)).getValue();
+    double value2 = static_cast<NumericValue&>(*params.at(1)).getValue();
+
+    if (value1 - value2 > -1e-6) {
+        return std::make_shared<BooleanValue>(true);
+    } else {
+        return std::make_shared<BooleanValue>(false);
+    }
+}
+
+ValuePtr even_htn(arguementType params) {
+    if (params.size() != 1)
+        throw LispError("Proc \'even?\' Just Allow One Arguements");
+    if (!(static_cast<BooleanValue&>(
+              *integer_htn(std::vector<ValuePtr>{params.at(0)}))
+              .getValue()))
+        throw LispError("Proc \'even\' Can Just Apply to Integers");
+
+    int value = static_cast<NumericValue&>(*params.at(0)).getValue();
+    if (value % 2 == 0) {
+        return std::make_shared<BooleanValue>(true);
+    } else {
+        return std::make_shared<BooleanValue>(false);
+    }
+}
+
+ValuePtr odd_htn(arguementType params) {
+    if (params.size() != 1)
+        throw LispError("Proc \'odd?\' Just Allow One Arguements");
+    if (!(static_cast<BooleanValue&>(
+              *integer_htn(std::vector<ValuePtr>{params.at(0)}))
+              .getValue()))
+        throw LispError("Proc \'odd\' Can Just Apply to Integers");
+
+    int value = static_cast<NumericValue&>(*params.at(0)).getValue();
+    if (value % 2 != 0) {
+        return std::make_shared<BooleanValue>(true);
+    } else {
+        return std::make_shared<BooleanValue>(false);
+    }
+}
+
+ValuePtr zero_htn(arguementType params) {
+    if (params.size() != 1)
+        throw LispError("Proc \'zero?\' Just Allow Two Arguements");
+    if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
+        throw LispError("Proc \'zero?\' Just Allow Numeric Arguements");
+    
+    double value = static_cast<NumericValue&>(*params.at(0)).getValue();
+
+    if (std::abs(value) < 1e-6) {
+        return std::make_shared<BooleanValue>(true);
+    } else {
+        return std::make_shared<BooleanValue>(false);
+    }
+}
+

@@ -28,8 +28,19 @@ ValuePtr listLength(arguementType params);
 ValuePtr _cdr(arguementType params);
 ValuePtr _car(arguementType params);
 ValuePtr _append(arguementType params);
-
-
+ValuePtr _abs(arguementType params);
+ValuePtr _expt(arguementType params);
+ValuePtr _quotient(arguementType params);
+ValuePtr _modulo(arguementType params);
+ValuePtr _remainder(arguementType params);
+ValuePtr num_equal(arguementType params);
+ValuePtr num_less(arguementType params);
+ValuePtr num_greater(arguementType params);
+ValuePtr num_less_or_equal(arguementType params);
+ValuePtr num_greater_or_equal(arguementType params);
+ValuePtr even_htn(arguementType params);
+ValuePtr odd_htn(arguementType params);
+ValuePtr zero_htn(arguementType params);
 
 //ValuePtr addVal = std::make_shared<BuiltinProcValue>(&add);
 

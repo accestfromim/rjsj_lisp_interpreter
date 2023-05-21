@@ -60,7 +60,32 @@ public:
             "car", std::make_shared<BuiltinProcValue>(&_car)));
         dict.insert(std::pair<std::string, ValuePtr>(
             "append", std::make_shared<BuiltinProcValue>(&_append)));
-        
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "abs", std::make_shared<BuiltinProcValue>(&_abs)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "expt", std::make_shared<BuiltinProcValue>(&_expt)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "quotient", std::make_shared<BuiltinProcValue>(&_quotient)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "modulo", std::make_shared<BuiltinProcValue>(&_modulo)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "remainder", std::make_shared<BuiltinProcValue>(&_remainder)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "=", std::make_shared<BuiltinProcValue>(&num_equal)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "<", std::make_shared<BuiltinProcValue>(&num_less)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            ">", std::make_shared<BuiltinProcValue>(&num_greater)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "<=", std::make_shared<BuiltinProcValue>(&num_less_or_equal)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            ">=", std::make_shared<BuiltinProcValue>(&num_greater_or_equal)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "even?", std::make_shared<BuiltinProcValue>(&even_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "odd?", std::make_shared<BuiltinProcValue>(&odd_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "zero?", std::make_shared<BuiltinProcValue>(&zero_htn)));
     }
    // ValuePtr reinterpretDefinedValue(ValuePtr definedValue);
     ValuePtr eval(ValuePtr expr);
