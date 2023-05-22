@@ -1,4 +1,5 @@
 #include "value.h"
+#include"eval_env.h"
 #include<string>
 #include<sstream>
 #include<iomanip>
@@ -66,4 +67,11 @@ std::vector<ValuePtr> PairValue::toVector() const {
 
 std::string BuiltinProcValue::toString() const {
     return std::string("#<procedure>");
+}
+
+ValuePtr LambdaValue::apply(const std::vector<ValuePtr>& args) {
+    std::shared_ptr<EvalEnv> itsEnv = itsParentEnv->createChild(params, args);
+    for (int i = 0; i < body.size() - 1; ++i) 
+        itsEnv->eval(body.at(i));
+    return itsEnv->eval(body.at(body.size() - 1));
 }

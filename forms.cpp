@@ -91,9 +91,11 @@ ValuePtr lambdaForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
         throw LispError("More Arguements Needed: \'lambda\'");
 
     ValuePtr params = args.at(0);
+    std::vector<ValuePtr> body = args;
+    body.erase(body.begin());
     if (params->getType() != ValueType::PAIR_VALUE) {
-        return std::make_shared<LambdaValue>(std::vector<std::string>(),
-                                             args.at(args.size() - 1));   
+        return std::make_shared<LambdaValue>(std::vector<std::string>(), body,
+                                             env.shared_from_this());  
     } else {
         std::vector<ValuePtr> vec = static_cast<PairValue&>(*params).toVector();
         std::vector<std::string> paras;
@@ -102,7 +104,7 @@ ValuePtr lambdaForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
                 throw LispError("Expect Symblo in Lambda Parameter");
             paras.push_back(ele->toString());
         }
-        return std::make_shared<LambdaValue>(paras,
-                                             args.at(args.size() - 1));   
+        return std::make_shared<LambdaValue>(paras, body,
+                                             env.shared_from_this());   
     }
 }

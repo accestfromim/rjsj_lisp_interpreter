@@ -6,12 +6,16 @@
 #include"value.h"
 #include"builtins.h"
 
-class EvalEnv {
+class EvalEnv : public std::enable_shared_from_this<EvalEnv> {
 public:
     std::unordered_map<std::string, ValuePtr> dict;
+    std::shared_ptr<EvalEnv> parent;
 
 public:
-    EvalEnv() {
+    EvalEnv(const std::unordered_map<std::string, ValuePtr>& map,
+            std::shared_ptr<EvalEnv> parent)
+        : dict{map}, parent{parent} {}
+    EvalEnv(std::shared_ptr<EvalEnv> parent = nullptr) : parent{parent} {
         dict.insert(std::pair<std::string, ValuePtr>(
             "+", std::make_shared<BuiltinProcValue>(&add)));
         dict.insert(std::pair<std::string, ValuePtr>(
@@ -87,10 +91,24 @@ public:
         dict.insert(std::pair<std::string, ValuePtr>(
             "zero?", std::make_shared<BuiltinProcValue>(&zero_htn)));
     }
+
+public:
    // ValuePtr reinterpretDefinedValue(ValuePtr definedValue);
     ValuePtr eval(ValuePtr expr);
     std::vector<ValuePtr> evalList(ValuePtr);
     ValuePtr apply(ValuePtr proc,std::vector<ValuePtr>& args);
+    ValuePtr lookupBinding(const std::string& name)const;
+    static std::shared_ptr<EvalEnv> createGlobal() {
+        return std::make_shared<EvalEnv>();
+    }
+    static std::shared_ptr<EvalEnv> createGlobal(
+        const std::unordered_map<std::string, ValuePtr>& dict,
+        std::shared_ptr<EvalEnv> parent) {
+        return std::make_shared<EvalEnv>(dict,parent);
+    }
+    std::shared_ptr<EvalEnv> createChild(
+        const std::vector<std::string>& params,
+        const std::vector<ValuePtr>& args);
 };
 
 #endif

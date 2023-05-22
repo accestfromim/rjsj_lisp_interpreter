@@ -5,6 +5,7 @@
 
 #include"error.h"
 
+
 enum class ValueType {
     BOOLEAN_VALUE,
     NUMERIC_VALUE,
@@ -127,18 +128,20 @@ public:
         return NumericValue(0);
     }*/
 };
-
+class EvalEnv;
 class LambdaValue : public Value {
 private:
     std::vector<std::string> params;
-    ValuePtr body;
+    std::vector<ValuePtr> body;
+    std::shared_ptr<EvalEnv> itsParentEnv;
     // [...]
 public:
     LambdaValue(const std::vector<std::string>& params,
-                ValuePtr body)
-        : Value(ValueType::LAMBDA_VALUE), params{params}, body{body} {}
+                const std::vector<ValuePtr>& body, std::shared_ptr<EvalEnv> env)
+        : Value(ValueType::LAMBDA_VALUE), params{params}, body{body}, itsParentEnv{env} {}
     std::string toString() const override {
         return std::string("#<procedure>");
     };  // 如前所述，返回 #<procedure> 即可
+    ValuePtr apply(const std::vector<ValuePtr>& args);
 };
 #endif
