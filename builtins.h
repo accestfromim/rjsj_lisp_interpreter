@@ -2,49 +2,55 @@
 #define BUILTINS_H
 
 #include "value.h"
-#include "error.h"
 using arguementType=const std::vector<ValuePtr>&;
-ValuePtr add(arguementType params);
-ValuePtr minus(arguementType params);
-ValuePtr print(arguementType params);
-ValuePtr multiply(arguementType params);
-ValuePtr devide(arguementType params);
-ValuePtr cons(arguementType params);
-ValuePtr list(arguementType params);
-ValuePtr list_htn(arguementType params);
-ValuePtr display(arguementType params);
-ValuePtr LispExit(arguementType params);
-ValuePtr newline(arguementType params);
-ValuePtr atom_htn(arguementType params);
-ValuePtr boolean_htn(arguementType params);
-ValuePtr integer_htn(arguementType params);
-ValuePtr number_htn(arguementType params);
-ValuePtr null_htn(arguementType params);
-ValuePtr pair_htn(arguementType params);
-ValuePtr procedure_htn(arguementType params);
-ValuePtr string_htn(arguementType params);
-ValuePtr symbol_htn(arguementType params);
-ValuePtr listLength(arguementType params);
-ValuePtr _cdr(arguementType params);
-ValuePtr _car(arguementType params);
-ValuePtr _append(arguementType params);
-ValuePtr _abs(arguementType params);
-ValuePtr _expt(arguementType params);
-ValuePtr _quotient(arguementType params);
-ValuePtr _modulo(arguementType params);
-ValuePtr _remainder(arguementType params);
-ValuePtr num_equal(arguementType params);
-ValuePtr num_less(arguementType params);
-ValuePtr num_greater(arguementType params);
-ValuePtr num_less_or_equal(arguementType params);
-ValuePtr num_greater_or_equal(arguementType params);
-ValuePtr even_htn(arguementType params);
-ValuePtr odd_htn(arguementType params);
-ValuePtr zero_htn(arguementType params);
-
-//ValuePtr addVal = std::make_shared<BuiltinProcValue>(&add);
-
-
+ValuePtr add(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr minus(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr print(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr multiply(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr devide(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr cons(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr list(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr list_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr display(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr displayln(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr LispExit(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr newline(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr atom_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr boolean_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr integer_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr number_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr null_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr pair_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr procedure_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr string_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr symbol_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr listLength(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _cdr(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _car(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _append(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _abs(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _expt(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _quotient(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _modulo(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _remainder(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr num_equal(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr num_less(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr num_greater(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr num_less_or_equal(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr num_greater_or_equal(const std::vector<ValuePtr>& params,
+                              EvalEnv& env);
+ValuePtr even_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr odd_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr zero_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _eval(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _apply(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr equal_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr eq_htn(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _error(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _map(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _filter(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _reduce(const std::vector<ValuePtr>& params, EvalEnv& env);
+ValuePtr _not(const std::vector<ValuePtr>& params, EvalEnv& env);
 
 
 

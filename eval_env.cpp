@@ -75,51 +75,7 @@ ValuePtr EvalEnv::eval(ValuePtr expr) {
             } else {
                 return specForm(std::vector<ValuePtr>{cdr}, *this);
             }
-            //(static_cast<SymbolValue&>(*procedure).getValue() ==
-            //           "define") {
-            //    auto definePair = static_cast<PairValue&>(*expr).cdr();
-            //    // // // // // // // // // // //
-            //    if (definePair->getType() != ValueType::PAIR_VALUE)
-            //        throw LispError("Procedure \'Define\' Must Has Two
-            //        Argruments");
-
-            //    if (static_cast<PairValue&>(*definePair).cdr()->getType()
-            //    ==
-            //        ValueType::NIL_VALUE)
-            //        throw LispError("Procedure \'Define\' Must Has Two
-            //        Argruments");
-
-            //    if (static_cast<PairValue&>(*definePair).car()->getType()
-            //    !=
-            //        ValueType::SYMBOL_VALUE)
-            //        throw LispError("This Type of Value Can't be
-            //        Defined");
-            //    // // // // // // // // // // // //
-            //    std::vector<ValuePtr> vec =
-            //        static_cast<PairValue&>(*definePair).toVector();
-            //    auto hasDefined = dict.find(vec.at(0)->toString());
-            //    if (hasDefined != dict.end()) dict.erase(hasDefined);
-            //    dict.insert(std::pair<std::string,
-            //    ValuePtr>(vec.at(0)->toString(),
-            //                                                 eval(vec.at(1))));
-            //    // auto hasDefined =
-            //    dict.find(static_cast<PairValue&>(*definePair)
-            //    //                                 .car()
-            //    //                                 ->toString()
-            //    /*getvalue()*/);
-            //    // if (hasDefined != dict.end()) dict.erase(hasDefined);
-
-            //    // auto evalable =
-            //    static_cast<PairValue&>(*definePair).cdr();
-            //    // assert(evalable->getType() == ValueType::PAIR_VALUE);
-
-            //    // dict.insert(std::pair<std::string, ValuePtr>(
-            //    //     static_cast<SymbolValue&>(
-            //    //         *static_cast<PairValue&>(*definePair).car())
-            //    //         .getValue(),
-            //    //     reinterpretDefinedValue(evalable)));
-            //    //  assert(dict.find("accest") != dict.end());
-            //    return std::make_shared<NilValue>();
+            
         } else {
             ValuePtr proc = eval(static_cast<PairValue&>(*expr).car());
             std::vector<ValuePtr> args =
@@ -129,6 +85,9 @@ ValuePtr EvalEnv::eval(ValuePtr expr) {
         }
     } else if (expr->getType() == ValueType::SYMBOL_VALUE) {
         // assert(static_cast<SymbolValue&>(*expr).getValue() == "accest");
+        if (expr->toString() == "else")
+            throw LispError("\'else\' Can't be Evaluated");
+
         ValuePtr value =
             lookupBinding(static_cast<SymbolValue&>(*expr).getValue());
         if (value != nullptr)  // return value->second;
@@ -141,6 +100,9 @@ ValuePtr EvalEnv::eval(ValuePtr expr) {
         return expr;
     } else if (expr->getType() == ValueType::NIL_VALUE) {
         throw LispError("Evaluating nil is prohibited.");
+    } else if (expr->getType() == ValueType::LAMBDA_VALUE ||
+               expr->getType() == ValueType::BUILTINPROC_VALUE) {
+        throw LispError("Can't Eval a Procedure Directly");
     } else {
         throw LispError("Unimplemented");
     }
@@ -161,9 +123,9 @@ std::vector<ValuePtr> EvalEnv::evalList(ValuePtr expr) {
     return result;
 }
 
-ValuePtr EvalEnv::apply(ValuePtr proc, std::vector<ValuePtr>& args) {
+ValuePtr EvalEnv::apply(ValuePtr proc,const std::vector<ValuePtr>& args) {
     if (proc->getType() == ValueType::BUILTINPROC_VALUE) {
-        return static_cast<BuiltinProcValue&>(*proc).getFunc()(args);
+        return static_cast<BuiltinProcValue&>(*proc).getFunc()(args,*this);
     } else if (proc->getType() == ValueType::LAMBDA_VALUE) {
         return static_cast<LambdaValue&>(*proc).apply(args);
     } else {

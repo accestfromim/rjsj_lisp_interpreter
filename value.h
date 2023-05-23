@@ -17,8 +17,9 @@ enum class ValueType {
     LAMBDA_VALUE
 };
 class Value;
+class EvalEnv;
 using ValuePtr = std::shared_ptr<Value>;
-using BuiltinFuncType = ValuePtr(const std::vector<ValuePtr>&);
+using BuiltinFuncType = ValuePtr(const std::vector<ValuePtr>&,EvalEnv&);
 //基类在这
 class Value {
 private:
@@ -128,7 +129,6 @@ public:
         return NumericValue(0);
     }*/
 };
-class EvalEnv;
 class LambdaValue : public Value {
 private:
     std::vector<std::string> params;

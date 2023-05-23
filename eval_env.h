@@ -35,6 +35,8 @@ public:
         dict.insert(std::pair<std::string, ValuePtr>(
             "display", std::make_shared<BuiltinProcValue>(&display)));
         dict.insert(std::pair<std::string, ValuePtr>(
+            "displayln", std::make_shared<BuiltinProcValue>(&displayln)));
+        dict.insert(std::pair<std::string, ValuePtr>(
             "exit", std::make_shared<BuiltinProcValue>(&LispExit)));
         dict.insert(std::pair<std::string, ValuePtr>(
             "newline", std::make_shared<BuiltinProcValue>(&newline)));
@@ -90,13 +92,31 @@ public:
             "odd?", std::make_shared<BuiltinProcValue>(&odd_htn)));
         dict.insert(std::pair<std::string, ValuePtr>(
             "zero?", std::make_shared<BuiltinProcValue>(&zero_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "eval", std::make_shared<BuiltinProcValue>(&_eval)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "apply", std::make_shared<BuiltinProcValue>(&_apply)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "equal?", std::make_shared<BuiltinProcValue>(&equal_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "eq?", std::make_shared<BuiltinProcValue>(&eq_htn)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "error", std::make_shared<BuiltinProcValue>(&_error)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "map", std::make_shared<BuiltinProcValue>(&_map)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "filter", std::make_shared<BuiltinProcValue>(&_filter)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "reduce", std::make_shared<BuiltinProcValue>(&_reduce)));
+        dict.insert(std::pair<std::string, ValuePtr>(
+            "not", std::make_shared<BuiltinProcValue>(&_not)));
     }
 
 public:
    // ValuePtr reinterpretDefinedValue(ValuePtr definedValue);
     ValuePtr eval(ValuePtr expr);
     std::vector<ValuePtr> evalList(ValuePtr);
-    ValuePtr apply(ValuePtr proc,std::vector<ValuePtr>& args);
+    ValuePtr apply(ValuePtr proc,const std::vector<ValuePtr>& args);
     ValuePtr lookupBinding(const std::string& name)const;
     static std::shared_ptr<EvalEnv> createGlobal() {
         return std::make_shared<EvalEnv>();
