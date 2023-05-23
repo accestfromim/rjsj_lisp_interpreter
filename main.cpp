@@ -18,8 +18,7 @@ struct TestCtx {
 };
 
 int main(int argc,char** argv) {
-    RJSJ_TEST(TestCtx, Lv2, Lv3, Lv4, Lv5,Lv5Extra, Lv6,Lv7);
-    
+    RJSJ_TEST(TestCtx, Lv2, Lv3, Lv4, Lv5, Lv5Extra, Lv6, Lv7, Lv7Lib, Sicp);
     //////////////文件模式
     if (argc != 1 && argc != 2) {
         std::cerr << "Too Many Arguements!" << std::endl;
@@ -54,3 +53,4 @@ int main(int argc,char** argv) {
         }
     }
 }
+// 9d39aa10-48e4-4dac-ba9c-d8feeac63454

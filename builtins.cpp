@@ -21,9 +21,9 @@ ValuePtr minus(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Cannot Minus a non-numeric value");
-    result = 2*static_cast<NumericValue&>(*params.at(0)).getValue();
+    result = 2 * static_cast<NumericValue&>(*params.at(0)).getValue();
     if (params.size() == 1) {
-        return std::make_shared<NumericValue>(-result/2);
+        return std::make_shared<NumericValue>(-(result/2));
     } else {
         for (const auto& i : params) {
             if (i->getType() != ValueType::NUMERIC_VALUE) {
@@ -187,8 +187,8 @@ ValuePtr integer_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.at(0)->getType() == ValueType::NUMERIC_VALUE) {
         double integer = static_cast<NumericValue&>(*params.at(0)).getValue();
 
-        if (static_cast<NumericValue&>(*params.at(0)).getValue() -
-                static_cast<int>(integer) < 1e-6)
+        if (std::abs(static_cast<NumericValue&>(*params.at(0)).getValue() -
+                static_cast<int>(integer)) < 1e-6)
             return std::make_shared<BooleanValue>(true);
     }
     return std::make_shared<BooleanValue>(false);
@@ -232,7 +232,8 @@ ValuePtr procedure_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.size() != 1)
         throw LispError("Proc \'procedure?\' Just Allow One Arguement");
 
-    if (params.at(0)->getType() == ValueType::BUILTINPROC_VALUE) {
+    if (params.at(0)->getType() == ValueType::BUILTINPROC_VALUE ||
+        params.at(0)->getType() == ValueType::LAMBDA_VALUE) {
         return std::make_shared<BooleanValue>(true);
     } else {
         return std::make_shared<BooleanValue>(false);
@@ -569,7 +570,13 @@ ValuePtr _apply(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
     std::vector<ValuePtr> to_apply = params;
     ValuePtr proc = to_apply.at(0);
-    to_apply.erase(to_apply.begin());
+    if (to_apply.at(1)->getType() == ValueType::PAIR_VALUE) {
+        to_apply = static_cast<PairValue&>(*to_apply.at(1)).toVector();
+    } else if (to_apply.at(1)->getType() == ValueType::NIL_VALUE) {
+        to_apply.clear();
+    } else {
+        to_apply.erase(to_apply.begin());
+    }
     return env.apply(proc, to_apply);
 }
 
@@ -713,9 +720,9 @@ ValuePtr _not(const std::vector<ValuePtr>& params, EvalEnv& env) {
          throw LispError("Proc \'reduce\' just Allow One Arguements");
 
      if (params.at(0)->toString() == "#f") {
-         return std::make_shared<BooleanValue>(false);
-     } else {
          return std::make_shared<BooleanValue>(true);
+     } else {
+         return std::make_shared<BooleanValue>(false);
      }
 }
 

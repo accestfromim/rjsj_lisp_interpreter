@@ -18,10 +18,11 @@ ValuePtr defineForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
     if (args.at(0)->getType() == ValueType::SYMBOL_VALUE) {
         if (args.size() != 2)
             throw LispError("SpecForm \'define\' Must Accept Two arguements");
+        ValuePtr value = env.eval(args.at(1));
         auto hasDefined = env.dict.find(args.at(0)->toString());
         if (hasDefined != env.dict.end()) env.dict.erase(hasDefined);
         env.dict.insert(std::pair<std::string, ValuePtr>(args.at(0)->toString(),
-                                                         env.eval(args.at(1))));
+                                                         value));
         return std::make_shared<NilValue>();
     } else {
         ValuePtr name = static_cast<PairValue&>(*args.at(0)).car();
@@ -188,7 +189,7 @@ ValuePtr letForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
                 throw LispError("let : bad syntax");
             
             name.push_back(nameValuePair.at(0));
-            value.push_back(nameValuePair.at(1));
+            value.push_back(env.eval(nameValuePair.at(1)));
         }
         ValuePtr nameListPtr = list(name, env);
         body.insert(body.begin(), nameListPtr);
@@ -200,7 +201,7 @@ ValuePtr letForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
         return env.apply(proc, value);
     }
 }
-
+//(let ((x 2)) ((begin (define x (+ x 1)) +) 3 (begin (define x (+ x 1)) x)))
 ValuePtr quasiquoteForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
     //assert(args.size()==1)
     if (args.size() == 0) 

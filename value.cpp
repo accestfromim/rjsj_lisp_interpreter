@@ -1,15 +1,17 @@
-#include "value.h"
-#include"eval_env.h"
 #include<string>
 #include<sstream>
 #include<iomanip>
+#include<cmath>
+#include "value.h"
+#include"eval_env.h"
+
 
 std::string BooleanValue::toString() const {
     return value ? "#t" : "#f";
 }
 
 std::string NumericValue::toString() const {
-    if (value - int(value) < 1e-6) 
+    if (std::abs(value - int(value)) < 1e-6) 
         return std::to_string(int(value));
     else 
         return std::to_string(value);
@@ -29,24 +31,29 @@ std::string SymbolValue::toString() const {
     return value;
 }
 
-void makeList(std::string& tgt) {
-    for (int i = 0; i < tgt.length(); i++)
-        if (tgt.at(i) == '\"')
-            while (tgt.at(++i) != '\"') /*do nothing*/;
-        else if (tgt.at(i) == '(' || tgt.at(i) == ')')
-            tgt.erase(i--, 1);
-    tgt.insert(0, "(");
-    tgt.push_back(')');
-}
+//void makeList(std::string& tgt) {
+//    for (int i = 0; i < tgt.length(); i++)
+//        if (tgt.at(i) == '\"')
+//            while (tgt.at(++i) != '\"') /*do nothing*/;
+//        else if (tgt.at(i) == '(' || tgt.at(i) == ')')
+//            tgt.erase(i--, 1);
+//    tgt.insert(0, "(");
+//    tgt.push_back(')');
+//}
 
 std::string PairValue::toString() const {
     std::string s;
     s.append(car()->toString());
-    if (cdr()->getType() == ValueType::PAIR_VALUE)
-        s.append(std::string(" ") + cdr()->toString());
-    else if (cdr()->getType() != ValueType::NIL_VALUE)
-        s.append(" . "+cdr()->toString());
-    makeList(s);
+    if (cdr()->getType() == ValueType::PAIR_VALUE) {
+        std::string _cdr = cdr()->toString();
+        _cdr.erase(_cdr.begin());
+        _cdr.pop_back();
+        s.append(std::string(" ") + _cdr);
+    } else if (cdr()->getType() != ValueType::NIL_VALUE)
+        s.append(" . " + cdr()->toString());
+    s.insert(s.begin(), '(');
+    s.push_back(')');
+    //makeList(s);
     return s;
 }
 
