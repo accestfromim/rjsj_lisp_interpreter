@@ -1,3 +1,5 @@
+#include<set>
+
 #include "forms.h"
 
 #include "builtins.h"
@@ -19,6 +21,31 @@ ValuePtr defineForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
         if (args.size() != 2)
             throw LispError("SpecForm \'define\' Must Accept Two arguements");
         ValuePtr value = env.eval(args.at(1));
+        /// ////////////////////
+
+        std::set<std::string> special{
+            "define", "quote", "and", "or",         "if",     "lambda",
+            "cond",   "begin", "let", "quasiquote", "unquote"};
+        if (special.find(args.at(0)->toString()) != special.end())
+            throw LispError("Can't be Defined: The Same Name as Special Forms\'");
+        
+        std::set<std::string> builtinProc{
+            "+",       "-",       "*",        "/",          "print",
+            "cons",    "list",    "list?",    "display",    "displayln",
+            "exit",    "newline", "atom?",    "boolean?",   "integer?",
+            "number?", "null?",   "pair?",    "procedure?", "string?",
+            "length",  "symbol?", "cdr",      "car",        "append",
+            "expt",    "abs",     "quotient", "modulo",     "remainder",
+            "=",       ">",       "<",        "<=",         ">=",
+            "even?",   "odd?",    "zero?",    "eval",       "apply",
+            "equal?",  "eq?",     "error",    "map",        "filter",
+            "reduce",  "not"};
+
+        if (builtinProc.find(args.at(0)->toString()) != builtinProc.end())
+            throw LispError(
+                "Can't be Defined: The Same Name as Builtin Procedures\'");
+
+        ///////////////////////////
         auto hasDefined = env.dict.find(args.at(0)->toString());
         if (hasDefined != env.dict.end()) env.dict.erase(hasDefined);
         env.dict.insert(std::pair<std::string, ValuePtr>(args.at(0)->toString(),
