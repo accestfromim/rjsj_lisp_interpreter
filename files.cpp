@@ -17,7 +17,7 @@ void ReadFile(char* fileName) {
     while (1) {
         ifile.get(c);
         if (ifile.eof()) break;
-        if (paren.empty() || (!paren.empty() && paren.top() != '\"'))
+        if (!paren.inQuote)
             if (c == ';') {
                 while (1) {
                     ifile.get(c);
@@ -33,7 +33,7 @@ void ReadFile(char* fileName) {
             env->eval(std::move(value));
             line.clear();
 
-        } else if (c == '(' || c == '\"') {
+        } else if (c == '(' || c == '\"' || c =='\\') {
             paren.push(c);
         } else if (c == ')') {
             paren.push(c);
@@ -51,45 +51,40 @@ void ReadFile(char* fileName) {
 
 void StackAdapter::push(char c) {
     switch (c) {
-        case '\"':
-            if (data.empty()) {
-                data.push(c);
-            } else if (data.top() == '\"') {
-                data.pop();
-            } else {
-                data.push(c);
+        case '\\': 
+            afterBackSlash = !afterBackSlash;
+            break;
+        case '\"': 
+            if (afterBackSlash) {
+                afterBackSlash = false;
+                break;
             }
+            inQuote = !inQuote;
             break;
         case '(':
-            if (data.empty()) {
-                data.push(c);
-            } else if (data.top() == '\"') {
-                break;
-            } else {
-                data.push(c);
-            }
+            afterBackSlash = false;
+            if (!inQuote) parens += 1;
             break;
         case ')':
-            if (data.empty()) throw LispError("Right Paren Without Left Paren");
+            afterBackSlash = false;
+            if (inQuote) break;
+            if (parens == 0) throw LispError("Right Paren Without Left Paren");
 
-            if (data.top() == '\"') {
+            if (inQuote) {
                 break;
             } else {
-                data.pop();
+                parens -= 1;
             }
             break;
-        default: break;
+        default: 
+            afterBackSlash = false;
     }
 }
 
 bool StackAdapter::empty() {
-    return data.empty();
+    return parens == 0;
 }
 
 int StackAdapter::getNum() {
-    return data.size();
-}
-
-char StackAdapter::top() {
-    return data.top();
+    return parens;
 }

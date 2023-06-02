@@ -7,7 +7,7 @@
 
 #include "error.h"
 #include "forms.h"
-// 允许接收对子作为求值的eval
+
 // ValuePtr EvalEnv::reinterpretDefinedValue(ValuePtr definedValue) {
 //     if (definedValue->getType() == ValueType::BOOLEAN_VALUE ||
 //         definedValue->getType() == ValueType::NUMERIC_VALUE ||
@@ -73,6 +73,7 @@ ValuePtr EvalEnv::eval(ValuePtr expr) {
                 return specForm(static_cast<PairValue&>(*cdr).toVector(),
                                 *this);
             } else {
+                //throw LispError("Illegal Use of Point");
                 return specForm(std::vector<ValuePtr>{cdr}, *this);
             }
             

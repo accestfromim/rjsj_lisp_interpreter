@@ -19,6 +19,7 @@ struct TestCtx {
 };
 
 int main(int argc,char** argv) {
+    //RJSJ_TEST(TestCtx, Quasiquote);
     //RJSJ_TEST(TestCtx, Errors);
     //RJSJ_TEST(TestCtx, Lv2, Lv3, Lv4, Lv5, Lv5Extra, Lv6, Lv7, Lv7Lib, Sicp);
     //////////////文件模式
@@ -48,7 +49,7 @@ int main(int argc,char** argv) {
             while (1) {
                 std::cin.get(c);
                 if (std::cin.eof()) std::exit(0);
-                if (paren.empty() || (!paren.empty() && paren.top() != '\"'))
+                if (!paren.inQuote)
                     if (c == ';') {
                         while (1) {
                             std::cin.get(c);
@@ -69,11 +70,11 @@ int main(int argc,char** argv) {
                         std::cout << result->toString() << std::endl;
                         break;
                     } else {
-                        if (paren.top() == '\"')
+                        if (paren.inQuote)
                             throw SyntaxError("String Can't be Seperated");
                         line.push_back(' ');
                         std::cout << "... ";
-                        for (int i = 1; i <= paren.getNum(); ++i)
+                        for (int i = 1; i < line.size()/2; ++i)
                             std::cout << ' ';
                     }
                 }
@@ -91,12 +92,9 @@ int main(int argc,char** argv) {
             std::cout << result->toString() << std::endl;*/
 
         } catch (std::runtime_error& e) {
-            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-                                    FOREGROUND_RED);
+            std::cout << "\033[31m";
             std::cerr << "Error: " << e.what() << std::endl;
-            SetConsoleTextAttribute(
-                GetStdHandle(STD_OUTPUT_HANDLE),
-                FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+            std::cout<<"\033[0m";
         }
     }
 }

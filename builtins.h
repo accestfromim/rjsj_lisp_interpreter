@@ -1,7 +1,8 @@
 #ifndef BUILTINS_H
 #define BUILTINS_H
-
+#include <unordered_map>
 #include "value.h"
+extern std::unordered_map<std::string, ValuePtr> Main_dict;
 using arguementType=const std::vector<ValuePtr>&;
 ValuePtr add(const std::vector<ValuePtr>& params, EvalEnv& env);
 ValuePtr minus(const std::vector<ValuePtr>& params, EvalEnv& env);

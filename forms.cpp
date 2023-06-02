@@ -29,7 +29,7 @@ ValuePtr defineForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
         if (special.find(args.at(0)->toString()) != special.end())
             throw LispError("Can't be Defined: The Same Name as Special Forms\'");
         
-        std::set<std::string> builtinProc{
+       /* std::set<std::string> builtinProc{
             "+",       "-",       "*",        "/",          "print",
             "cons",    "list",    "list?",    "display",    "displayln",
             "exit",    "newline", "atom?",    "boolean?",   "integer?",
@@ -43,7 +43,7 @@ ValuePtr defineForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
 
         if (builtinProc.find(args.at(0)->toString()) != builtinProc.end())
             throw LispError(
-                "Can't be Defined: The Same Name as Builtin Procedures\'");
+                "Can't be Defined: The Same Name as Builtin Procedures\'");*/
 
         ///////////////////////////
         auto hasDefined = env.dict.find(args.at(0)->toString());
@@ -128,7 +128,7 @@ ValuePtr lambdaForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
         std::vector<std::string> paras;
         for (ValuePtr ele : vec) {
             if (ele->getType() != ValueType::SYMBOL_VALUE)
-                throw LispError("Expect Symblo in Lambda Parameter");
+                throw LispError("Expect Symbol in Lambda Parameter");
             paras.push_back(ele->toString());
         }
         return std::make_shared<LambdaValue>(paras, body,
@@ -180,6 +180,7 @@ ValuePtr condForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
             }
         }
     }
+    throw std::runtime_error("Inner System Error");
 }
 
 ValuePtr beginForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
@@ -190,6 +191,7 @@ ValuePtr beginForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
         ValuePtr value = env.eval(item);
         if (item == args.at(args.size() - 1)) return value;  
     }
+    throw std::runtime_error("Inner System Error");
 }
 
 ValuePtr letForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
@@ -230,33 +232,46 @@ ValuePtr letForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
 }
 //(let ((x 2)) ((begin (define x (+ x 1)) +) 3 (begin (define x (+ x 1)) x)))
 ValuePtr quasiquoteForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
-    //assert(args.size()==1)
+    //assert(args.size() == 1);
     if (args.size() == 0) 
         throw LispError("More Words Needed");
 
-    if (args.at(0)->getType() != ValueType::PAIR_VALUE) {
-        return args.at(0);
+    ValuePtr body = args.at(0);
+    if (body->getType() != ValueType::PAIR_VALUE) {
+        return body;
     } else {
-        std::vector<ValuePtr> vec =
-            static_cast<PairValue&>(*args.at(0)).toVector();
-        auto iter = vec.begin();
-        while (iter != vec.end()) {
-            if ((*iter)->getType() != ValueType::PAIR_VALUE) {
+        if (static_cast<PairValue&>(*body).car()->toString() == "unquote") {
+            return env.eval(static_cast<PairValue&>(*static_cast<PairValue&>(*body).cdr()).car());
+        } else if (static_cast<PairValue&>(*body).car()->toString() ==
+                   "quasiquote") {
+            return body;
+        } else {
+            std::vector<ValuePtr> vec =
+                static_cast<PairValue&>(*body).toVector();
+            auto iter = vec.begin();
+            while (iter != vec.end()) {
+                (*iter) = quasiquoteForm(std::vector<ValuePtr>{*iter}, env);
                 ++iter;
-                continue;
-            } else {
-                if (static_cast<PairValue&>(*(*iter)).car()->toString() ==
-                    "unquote") {
-                    *iter = env.eval(static_cast<PairValue&>(*static_cast<PairValue&>(*(*iter)).cdr()).car());
-                } else {
-                    std::vector<ValuePtr> childvec =
-                        static_cast<PairValue&>(*(*iter)).toVector();
-                    *iter = quasiquoteForm(childvec, env);
-                }
-
             }
-            ++iter;
+            return list(vec, env);
         }
-        return list(vec, env);
     }
 }
+                /*if ((*iter)->getType() != ValueType::PAIR_VALUE) {
+                    ++iter;
+                    continue;
+                } else {
+                    if (static_cast<PairValue&>(*(*iter)).car()->toString() ==
+                        "unquote") {
+                        *iter = env.eval(
+                            static_cast<PairValue&>(
+                                *static_cast<PairValue&>(*(*iter)).cdr())
+                                .car());
+                    } else {
+                        std::vector<ValuePtr> childvec =
+                            static_cast<PairValue&>(*(*iter)).toVector();
+                        *iter = list(std::vector<ValuePtr>{quasiquoteForm(
+                                         childvec, env)},
+                                     env);
+                    }
+                }*/

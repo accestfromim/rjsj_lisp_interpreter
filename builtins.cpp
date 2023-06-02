@@ -3,6 +3,55 @@
 #include "builtins.h"
 #include "eval_env.h"
 
+std::unordered_map<std::string, ValuePtr> Main_dict{
+    {"+", std::make_shared<BuiltinProcValue>(&add)},
+    {"-", std::make_shared<BuiltinProcValue>(&minus)},
+    {"print", std::make_shared<BuiltinProcValue>(&print)},
+    {"*", std::make_shared<BuiltinProcValue>(&multiply)},
+    {"/", std::make_shared<BuiltinProcValue>(&devide)},
+    {"cons", std::make_shared<BuiltinProcValue>(&cons)},
+    {"list", std::make_shared<BuiltinProcValue>(&list)},
+    {"list?", std::make_shared<BuiltinProcValue>(&list_htn)},
+    {"display", std::make_shared<BuiltinProcValue>(&display)},
+    {"displayln", std::make_shared<BuiltinProcValue>(&displayln)},
+    {"exit", std::make_shared<BuiltinProcValue>(&LispExit)},
+    {"newline", std::make_shared<BuiltinProcValue>(&newline)},
+    {"atom?", std::make_shared<BuiltinProcValue>(&atom_htn)},
+    {"boolean?", std::make_shared<BuiltinProcValue>(&boolean_htn)},
+    {"integer?", std::make_shared<BuiltinProcValue>(&integer_htn)},
+    {"number?", std::make_shared<BuiltinProcValue>(&number_htn)},
+    {"null?", std::make_shared<BuiltinProcValue>(&null_htn)},
+    {"pair?", std::make_shared<BuiltinProcValue>(&pair_htn)},
+    {"procedure?", std::make_shared<BuiltinProcValue>(&procedure_htn)},
+    {"string?", std::make_shared<BuiltinProcValue>(&string_htn)},
+    {"symbol?", std::make_shared<BuiltinProcValue>(&symbol_htn)},
+    {"length", std::make_shared<BuiltinProcValue>(&listLength)},
+    {"cdr", std::make_shared<BuiltinProcValue>(&_cdr)},
+    {"car", std::make_shared<BuiltinProcValue>(&_car)},
+    {"append", std::make_shared<BuiltinProcValue>(&_append)},
+    {"abs", std::make_shared<BuiltinProcValue>(&_abs)},
+    {"expt", std::make_shared<BuiltinProcValue>(&_expt)},
+    {"quotient", std::make_shared<BuiltinProcValue>(&_quotient)},
+    {"modulo", std::make_shared<BuiltinProcValue>(&_modulo)},
+    {"remainder", std::make_shared<BuiltinProcValue>(&_remainder)},
+    {"=", std::make_shared<BuiltinProcValue>(&num_equal)},
+    {"<", std::make_shared<BuiltinProcValue>(&num_less)},
+    {">", std::make_shared<BuiltinProcValue>(&num_greater)},
+    {"<=", std::make_shared<BuiltinProcValue>(&num_less_or_equal)},
+    {">=", std::make_shared<BuiltinProcValue>(&num_greater_or_equal)},
+    {"even?", std::make_shared<BuiltinProcValue>(&even_htn)},
+    {"odd?", std::make_shared<BuiltinProcValue>(&odd_htn)},
+    {"zero?", std::make_shared<BuiltinProcValue>(&zero_htn)},
+    {"eval", std::make_shared<BuiltinProcValue>(&_eval)},
+    {"apply", std::make_shared<BuiltinProcValue>(&_apply)},
+    {"equal?", std::make_shared<BuiltinProcValue>(&equal_htn)},
+    {"eq?", std::make_shared<BuiltinProcValue>(&eq_htn)},
+    {"error", std::make_shared<BuiltinProcValue>(&_error)},
+    {"map", std::make_shared<BuiltinProcValue>(&_map)},
+    {"filter", std::make_shared<BuiltinProcValue>(&_filter)},
+    {"reduce", std::make_shared<BuiltinProcValue>(&_reduce)},
+    {"not", std::make_shared<BuiltinProcValue>(&_not)},
+};
 ValuePtr add(const std::vector<ValuePtr>& params, EvalEnv& env) {
     double result = 0;
     for (const auto& i : params) {
@@ -17,7 +66,7 @@ ValuePtr add(const std::vector<ValuePtr>& params, EvalEnv& env) {
 ValuePtr minus(const std::vector<ValuePtr>& params, EvalEnv& env) {
     double result = 0;
     if (params.size() == 0)
-        throw LispError("Proc - Allow at Least One Agruement");
+        throw LispError("Proc \'-\' Allow at Least One Agruement");
 
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Cannot Minus a non-numeric value");
@@ -37,7 +86,7 @@ ValuePtr minus(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
 ValuePtr print(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.size() != 1) {
-        throw LispError("Print Just Allow One Element");
+        ThrowErrorForStrictProc("print", 1);
     } else {
         std::cout << params.at(0)->toString() << std::endl;
     }
@@ -47,7 +96,7 @@ ValuePtr print(const std::vector<ValuePtr>& params, EvalEnv& env) {
 ValuePtr devide(const std::vector<ValuePtr>& params, EvalEnv& env) {
     double result = 1;
     if (params.size() == 0)
-        throw LispError("Proc / Allow at Least One Agruement");
+        throw LispError("Proc \'/\' Allow at Least One Agruement");
 
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Cannot Devide a non-numeric value");
@@ -82,8 +131,8 @@ ValuePtr multiply(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr cons(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2) 
-        throw LispError("Proc \'cons\' just Accept Two Arguements");
+    if (params.size() != 2)
+        ThrowErrorForStrictProc("cons", 2);
     
     return std::make_shared<PairValue>(params.at(0),params.at(1));
 }
@@ -96,8 +145,8 @@ ValuePtr list(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr list_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'list?\' Just Allow One arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("list?", 1);
     if (params.at(0)->getType() == ValueType::NIL_VALUE) {
         return std::make_shared<BooleanValue>(true);
     }else if (params.at(0)->getType() != ValueType::PAIR_VALUE) {
@@ -118,9 +167,9 @@ ValuePtr list_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
 ValuePtr display(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.size() != 1) 
-        throw LispError("Proc \'display\' Allow Just One Arguement");
+        ThrowErrorForStrictProc("display", 1);
     if (params.at(0)->getType() == ValueType::STRING_VALUE) {
-        std::cout << static_cast<StringValue&>(*params.at(0)).getValue()<<std::endl;
+        std::cout << static_cast<StringValue&>(*params.at(0)).getValue();
     } else {
         std::cout << params.at(0)->toString();
     }
@@ -129,7 +178,7 @@ ValuePtr display(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
 ValuePtr displayln(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.size() != 1)
-        throw LispError("Proc \'displayln\' Allow Just One Arguement");
+        ThrowErrorForStrictProc("displayln", 1);
     if (params.at(0)->getType() == ValueType::STRING_VALUE) {
         std::cout << static_cast<StringValue&>(*params.at(0)).getValue()
                   << std::endl;
@@ -142,23 +191,29 @@ ValuePtr displayln(const std::vector<ValuePtr>& params, EvalEnv& env) {
 ValuePtr LispExit(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.size() > 1) 
         throw LispError("Too Much Arguements Given");
-
-    std::exit(0);
+    if (params.size() == 0) {
+        std::exit(0);
+    } else {
+        //assert(params.size()==1)
+        if (params.at(0)->getType()!=ValueType::NUMERIC_VALUE)
+            throw LispError("Proc \'exit\' doesn\'t Allow Non-numeric Arguement");
+        int _exit_ = static_cast<NumericValue&>(*params.at(0)).getValue();
+        std::exit(_exit_);
+    }
     return std::make_shared<NilValue>();
 }
 
 ValuePtr newline(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 0)
-        throw LispError("Proc \'newline\' Doesn't Allow Any Arguements");
+    if (params.size() != 0) 
+        ThrowErrorForStrictProc("newline", 0);
 
     std::cout << std::endl;
     return std::make_shared<NilValue>();
 }
 
 ValuePtr atom_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'atom?\' Just Allow One Arguement");
-
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("atom?", 1);
     ValueType type = params.at(0)->getType();
     if (type == ValueType::BOOLEAN_VALUE || type == ValueType::STRING_VALUE ||
         type == ValueType::NUMERIC_VALUE||type==ValueType::SYMBOL_VALUE||type==ValueType::NIL_VALUE) {
@@ -170,8 +225,8 @@ ValuePtr atom_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr boolean_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'boolean?\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("boolean?", 1);
 
     if (params.at(0)->getType() == ValueType::BOOLEAN_VALUE) {
         return std::make_shared<BooleanValue>(true);
@@ -181,8 +236,8 @@ ValuePtr boolean_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr integer_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'integer?\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("integer?", 1);
 
     if (params.at(0)->getType() == ValueType::NUMERIC_VALUE) {
         double integer = static_cast<NumericValue&>(*params.at(0)).getValue();
@@ -196,8 +251,8 @@ ValuePtr integer_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr number_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'number?\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("number?", 1);
 
     if (params.at(0)->getType() == ValueType::NUMERIC_VALUE) {
         return std::make_shared<BooleanValue>(true);
@@ -207,8 +262,8 @@ ValuePtr number_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr null_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'null?\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("null?", 1);
 
     if (params.at(0)->getType() == ValueType::NIL_VALUE) {
         return std::make_shared<BooleanValue>(true);
@@ -219,7 +274,7 @@ ValuePtr null_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
 ValuePtr pair_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.size() != 1)
-        throw LispError("Proc \'pair?\' Just Allow One Arguement");
+        ThrowErrorForStrictProc("pair?", 1);
 
     if (params.at(0)->getType() == ValueType::PAIR_VALUE) {
         return std::make_shared<BooleanValue>(true);
@@ -229,8 +284,8 @@ ValuePtr pair_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr procedure_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'procedure?\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("procedure?", 1);
 
     if (params.at(0)->getType() == ValueType::BUILTINPROC_VALUE ||
         params.at(0)->getType() == ValueType::LAMBDA_VALUE) {
@@ -241,8 +296,8 @@ ValuePtr procedure_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr string_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'string?\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("string?", 1);
 
     if (params.at(0)->getType() == ValueType::STRING_VALUE) {
         return std::make_shared<BooleanValue>(true);
@@ -252,8 +307,8 @@ ValuePtr string_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr symbol_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'symbol?\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("symbol?", 1);
 
     
     if (params.at(0)->getType() == ValueType::SYMBOL_VALUE) {
@@ -265,8 +320,8 @@ ValuePtr symbol_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr listLength(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'length\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("length", 1);
 
     if (!(static_cast<BooleanValue&>(*list_htn(params,env)).getValue()))
         throw LispError("Proc \'length\' Just Allow List as Arguement");
@@ -286,7 +341,7 @@ ValuePtr listLength(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
 ValuePtr _cdr(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.size() != 1) 
-        throw LispError("Proc \'cdr\' Just Allow One Arguement");
+        ThrowErrorForStrictProc("cdr", 1);
 
     if (params.at(0)->getType() != ValueType::PAIR_VALUE)
         throw LispError("Proc \'cdr\' Just Allow Arguement with Type Pair or List Except Nil");
@@ -296,8 +351,8 @@ ValuePtr _cdr(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr _car(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'car\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("car", 1);
 
     if (params.at(0)->getType() != ValueType::PAIR_VALUE)
         throw LispError(
@@ -330,8 +385,8 @@ ValuePtr _append(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr _abs(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'abs\' Just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("abs", 1);
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Proc \'abs\' Just Allow Numeric Arguement");
 
@@ -340,8 +395,8 @@ ValuePtr _abs(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr _expt(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'expt\' Just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc("expt", 2);
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Proc \'expt\' Just Allow Numeric Arguements");
     if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
@@ -355,8 +410,8 @@ ValuePtr _expt(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr _quotient(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'quotient\' Just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc("quotient", 2);
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Proc \'quotient\' Just Allow Numeric Arguements");
     if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
@@ -369,8 +424,8 @@ ValuePtr _quotient(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr _modulo(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'modulo\' Just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc("modulo", 2);
 
     if (!(static_cast<BooleanValue&>(
               *integer_htn(std::vector<ValuePtr>{params.at(0)},env))
@@ -404,8 +459,8 @@ ValuePtr _modulo(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr _remainder(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'remainder\' Just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc("remainder", 2);
 
     if (!(static_cast<BooleanValue&>(
               *integer_htn(std::vector<ValuePtr>{params.at(0)},env))
@@ -425,8 +480,8 @@ ValuePtr _remainder(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr num_equal(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'=\' Just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc("=", 2);
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Proc \'=\' Just Allow Numeric Arguements");
     if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
@@ -442,8 +497,8 @@ ValuePtr num_equal(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr num_less(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'<\' Just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc("<", 2);
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Proc \'<\' Just Allow Numeric Arguements");
     if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
@@ -459,8 +514,8 @@ ValuePtr num_less(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr num_greater(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'>\' Just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc(">", 2);
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Proc \'>\' Just Allow Numeric Arguements");
     if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
@@ -476,8 +531,8 @@ ValuePtr num_greater(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr num_less_or_equal(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'<=\' Just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc("<=", 2);
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Proc \'<=\' Just Allow Numeric Arguements");
     if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
@@ -494,8 +549,8 @@ ValuePtr num_less_or_equal(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
 ValuePtr num_greater_or_equal(const std::vector<ValuePtr>& params,
                               EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'>=\' Just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc(">=", 2);
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Proc \'>=\' Just Allow Numeric Arguements");
     if (params.at(1)->getType() != ValueType::NUMERIC_VALUE)
@@ -511,8 +566,8 @@ ValuePtr num_greater_or_equal(const std::vector<ValuePtr>& params,
 }
 
 ValuePtr even_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'even?\' Just Allow One Arguements");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("even?", 1);
     if (!(static_cast<BooleanValue&>(
               *integer_htn(std::vector<ValuePtr>{params.at(0)},env))
               .getValue()))
@@ -527,8 +582,8 @@ ValuePtr even_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr odd_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'odd?\' Just Allow One Arguements");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("odd?", 1);
     if (!(static_cast<BooleanValue&>(
               *integer_htn(std::vector<ValuePtr>{params.at(0)},env))
               .getValue()))
@@ -543,8 +598,8 @@ ValuePtr odd_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr zero_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'zero?\' Just Allow Two Arguements");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("zero?", 1);
     if (params.at(0)->getType() != ValueType::NUMERIC_VALUE)
         throw LispError("Proc \'zero?\' Just Allow Numeric Arguements");
     
@@ -559,14 +614,14 @@ ValuePtr zero_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
 ValuePtr _eval(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.size() != 1) 
-        throw LispError("Proc \'_eval\' just Allow 1 Arguement");
+        ThrowErrorForStrictProc("eval", 1);
 
     return env.eval(params.at(0));
 }
 
 ValuePtr _apply(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'apply\' just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc("apply", 2);
 
     std::vector<ValuePtr> to_apply = params;
     ValuePtr proc = to_apply.at(0);
@@ -581,8 +636,8 @@ ValuePtr _apply(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr equal_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size()!=2)
-        throw LispError("Proc \'equal?\' just Allow Two Arguements");
+    if (params.size()!=2) 
+        ThrowErrorForStrictProc("equal?", 2);
 
     if (params.at(0)->getType() == ValueType::BUILTINPROC_VALUE ||
         params.at(0)->getType() == ValueType::LAMBDA_VALUE){
@@ -599,8 +654,8 @@ ValuePtr equal_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr eq_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 2)
-        throw LispError("Proc \'equal?\' just Allow Two Arguements");
+    if (params.size() != 2) 
+        ThrowErrorForStrictProc("eq?", 2);
 
     if (params.at(0)->getType() == ValueType::PAIR_VALUE ||
         params.at(0)->getType() == ValueType::STRING_VALUE) {
@@ -615,19 +670,19 @@ ValuePtr eq_htn(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr _error(const std::vector<ValuePtr>& params, EvalEnv& env) {
-    if (params.size() != 1)
-        throw LispError("Proc \'error\' just Allow One Arguement");
+    if (params.size() != 1) 
+        ThrowErrorForStrictProc("error", 1);
 
-    if (params.at(0)->getType() != ValueType::STRING_VALUE &&
-        params.at(0)->getType() != ValueType::SYMBOL_VALUE)
-        throw LispError("Proc \'error\' just Allow String Value or Symbol Value");
+    //if (params.at(0)->getType() != ValueType::STRING_VALUE &&
+    //    params.at(0)->getType() != ValueType::SYMBOL_VALUE)
+    //    throw LispError("Proc \'error\' just Allow String Value or Symbol Value");
 
     throw LispError(params.at(0)->toString());
 }
 
 ValuePtr _map(const std::vector<ValuePtr>& params, EvalEnv& env) {
     if (params.size() != 2) 
-        throw LispError("Proc \'map\' just Allow Two Arguements");
+        ThrowErrorForStrictProc("map", 2);
 
     ValuePtr proc = params.at(0);
     if (proc->getType() != ValueType::BUILTINPROC_VALUE &&
@@ -652,8 +707,8 @@ ValuePtr _map(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr _filter(const std::vector<ValuePtr>& params, EvalEnv& env) {
-     if (params.size() != 2)
-        throw LispError("Proc \'filter\' just Allow Two Arguements");
+     if (params.size() != 2) 
+         ThrowErrorForStrictProc("filter", 2);
 
      ValuePtr proc = params.at(0);
      if (proc->getType() != ValueType::BUILTINPROC_VALUE &&
@@ -682,8 +737,8 @@ ValuePtr _filter(const std::vector<ValuePtr>& params, EvalEnv& env) {
 }
 
 ValuePtr _reduce(const std::vector<ValuePtr>& params, EvalEnv& env) {
-     if (params.size() != 2)
-        throw LispError("Proc \'reduce\' just Allow Two Arguements");
+     if (params.size() != 2) 
+         ThrowErrorForStrictProc("reduce", 2);
 
      ValuePtr proc = params.at(0);
      if (proc->getType() != ValueType::BUILTINPROC_VALUE &&
@@ -717,7 +772,7 @@ ValuePtr _reduce(const std::vector<ValuePtr>& params, EvalEnv& env) {
 
 ValuePtr _not(const std::vector<ValuePtr>& params, EvalEnv& env) {
      if (params.size() != 1) 
-         throw LispError("Proc \'reduce\' just Allow One Arguements");
+        ThrowErrorForStrictProc("not", 1);
 
      if (params.at(0)->toString() == "#f") {
          return std::make_shared<BooleanValue>(true);

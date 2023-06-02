@@ -61,13 +61,21 @@ std::vector<ValuePtr> PairValue::toVector() const {
     std::vector<ValuePtr> result{this->car()};
 
     if (this->cdr()->getType() == ValueType::NIL_VALUE) {
+        //result.push_back(this->cdr());
         return result;
     } else if (this->cdr()->getType() != ValueType::PAIR_VALUE) {
         result.push_back(this->cdr());
         return result;
     } else {
-        std::vector<ValuePtr> _cdr=static_cast<PairValue&>(*this->cdr()).toVector();
-        for (auto i : _cdr) result.push_back(i);
+        std::string quote_htn = static_cast<PairValue&>(*this->cdr()).car()->toString();
+        if (quote_htn == "quote" || quote_htn == "quasiquote" ||
+            quote_htn == "unquote") {
+            result.push_back(this->cdr());
+        } else {
+            std::vector<ValuePtr> _cdr =
+                static_cast<PairValue&>(*this->cdr()).toVector();
+            for (auto i : _cdr) result.push_back(i);
+        }
     }
     return result;
 }

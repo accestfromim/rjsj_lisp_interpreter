@@ -1,16 +1,19 @@
 #ifndef FILES_H
 #define FILES_H
 
-#include<stack>
 class StackAdapter {
 private:
-    std::stack<char> data;
+    //std::stack<char> data;
+    int parens{0};
+    bool afterBackSlash{0};
+
+public:
+    bool inQuote{0};
 
 public:
     void push(char c);
     bool empty();
     int getNum();
-    char top();
 };
 void ReadFile(char* fileName);
 
