@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/lisp.dir/error.cpp.o CMakeFiles/lisp.dir/main.cpp.o CMakeFiles/lisp.dir/parser.cpp.o CMakeFiles/lisp.dir/builtins.cpp.o CMakeFiles/lisp.dir/eval_env.cpp.o CMakeFiles/lisp.dir/files.cpp.o CMakeFiles/lisp.dir/forms.cpp.o CMakeFiles/lisp.dir/token.cpp.o CMakeFiles/lisp.dir/tokenizer.cpp.o CMakeFiles/lisp.dir/value.cpp.o -o bin/lisp 

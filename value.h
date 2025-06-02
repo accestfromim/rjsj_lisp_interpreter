@@ -2,7 +2,7 @@
 #define VALUE_H
 #include<iostream>
 #include<vector>
-
+#include <memory>
 #include"error.h"
 
 

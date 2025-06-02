@@ -1274,6 +1274,8 @@ RMLT_CASE("`(a(a(a(a(a(a,(+ 1 2)a)a)a)a)a)a)", "(a(a(a(a(a(a 3 a)a)a)a)a)a)")
 RMLT_CASE("`(((,((lambda(a b)(+ a b))1 3))))", "(((4)))")
 RMLT_CASE("`(()'(,(+ 1 2)))", "(() (quote (3)))")
 RMLT_CASE("`(`(,(+ 1 2)) ,(+ 1 2))", "((quasiquote((unquote(+ 1 2))))3)")
+RMLT_CASE("`(1 . 2)", "(1 . 2)")
+RMLT_CASE("`(1 . ,(+ 2 3))", "(1 . 5)")
 RMLT_END_CASES()
 
 #undef RMLT_BEGIN_CASES

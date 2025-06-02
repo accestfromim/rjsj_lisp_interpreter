@@ -25,7 +25,7 @@ ValuePtr defineForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
 
         std::set<std::string> special{
             "define", "quote", "and", "or",         "if",     "lambda",
-            "cond",   "begin", "let", "quasiquote", "unquote"};
+            "cond",   "begin", "let", "quasiquote", "unquote", "else"};
         if (special.find(args.at(0)->toString()) != special.end())
             throw LispError("Can't be Defined: The Same Name as Special Forms\'");
         
@@ -246,14 +246,12 @@ ValuePtr quasiquoteForm(const std::vector<ValuePtr>& args, EvalEnv& env) {
                    "quasiquote") {
             return body;
         } else {
-            std::vector<ValuePtr> vec =
-                static_cast<PairValue&>(*body).toVector();
-            auto iter = vec.begin();
-            while (iter != vec.end()) {
-                (*iter) = quasiquoteForm(std::vector<ValuePtr>{*iter}, env);
-                ++iter;
-            }
-            return list(vec, env);
+            return std::make_shared<PairValue>(quasiquoteForm(
+                    std::vector<ValuePtr>{static_cast<PairValue&>(*body).car()},
+                    env),
+                quasiquoteForm(
+                    std::vector<ValuePtr>{static_cast<PairValue&>(*body).cdr()},
+                    env));
         }
     }
 }

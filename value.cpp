@@ -64,8 +64,9 @@ std::vector<ValuePtr> PairValue::toVector() const {
         //result.push_back(this->cdr());
         return result;
     } else if (this->cdr()->getType() != ValueType::PAIR_VALUE) {
-        result.push_back(this->cdr());
-        return result;
+        throw LispError("Illegal Use of Dot");
+        /*result.push_back(this->cdr());
+        return result;*/
     } else {
         std::string quote_htn = static_cast<PairValue&>(*this->cdr()).car()->toString();
         if (quote_htn == "quote" || quote_htn == "quasiquote" ||

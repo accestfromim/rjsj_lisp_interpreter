@@ -1,0 +1,3 @@
+/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles/lisp.dir
+/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles/edit_cache.dir
+/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles/rebuild_cache.dir
