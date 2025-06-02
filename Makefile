@@ -129,245 +129,245 @@ lisp/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/build
 .PHONY : lisp/fast
 
-builtins.o: builtins.cpp.o
-.PHONY : builtins.o
+src/builtins.o: src/builtins.cpp.o
+.PHONY : src/builtins.o
 
 # target to build an object file
-builtins.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/builtins.cpp.o
-.PHONY : builtins.cpp.o
+src/builtins.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/builtins.cpp.o
+.PHONY : src/builtins.cpp.o
 
-builtins.i: builtins.cpp.i
-.PHONY : builtins.i
+src/builtins.i: src/builtins.cpp.i
+.PHONY : src/builtins.i
 
 # target to preprocess a source file
-builtins.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/builtins.cpp.i
-.PHONY : builtins.cpp.i
+src/builtins.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/builtins.cpp.i
+.PHONY : src/builtins.cpp.i
 
-builtins.s: builtins.cpp.s
-.PHONY : builtins.s
+src/builtins.s: src/builtins.cpp.s
+.PHONY : src/builtins.s
 
 # target to generate assembly for a file
-builtins.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/builtins.cpp.s
-.PHONY : builtins.cpp.s
+src/builtins.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/builtins.cpp.s
+.PHONY : src/builtins.cpp.s
 
-error.o: error.cpp.o
-.PHONY : error.o
+src/error.o: src/error.cpp.o
+.PHONY : src/error.o
 
 # target to build an object file
-error.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/error.cpp.o
-.PHONY : error.cpp.o
+src/error.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/error.cpp.o
+.PHONY : src/error.cpp.o
 
-error.i: error.cpp.i
-.PHONY : error.i
+src/error.i: src/error.cpp.i
+.PHONY : src/error.i
 
 # target to preprocess a source file
-error.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/error.cpp.i
-.PHONY : error.cpp.i
+src/error.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/error.cpp.i
+.PHONY : src/error.cpp.i
 
-error.s: error.cpp.s
-.PHONY : error.s
+src/error.s: src/error.cpp.s
+.PHONY : src/error.s
 
 # target to generate assembly for a file
-error.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/error.cpp.s
-.PHONY : error.cpp.s
+src/error.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/error.cpp.s
+.PHONY : src/error.cpp.s
 
-eval_env.o: eval_env.cpp.o
-.PHONY : eval_env.o
+src/eval_env.o: src/eval_env.cpp.o
+.PHONY : src/eval_env.o
 
 # target to build an object file
-eval_env.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/eval_env.cpp.o
-.PHONY : eval_env.cpp.o
+src/eval_env.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/eval_env.cpp.o
+.PHONY : src/eval_env.cpp.o
 
-eval_env.i: eval_env.cpp.i
-.PHONY : eval_env.i
+src/eval_env.i: src/eval_env.cpp.i
+.PHONY : src/eval_env.i
 
 # target to preprocess a source file
-eval_env.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/eval_env.cpp.i
-.PHONY : eval_env.cpp.i
+src/eval_env.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/eval_env.cpp.i
+.PHONY : src/eval_env.cpp.i
 
-eval_env.s: eval_env.cpp.s
-.PHONY : eval_env.s
+src/eval_env.s: src/eval_env.cpp.s
+.PHONY : src/eval_env.s
 
 # target to generate assembly for a file
-eval_env.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/eval_env.cpp.s
-.PHONY : eval_env.cpp.s
+src/eval_env.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/eval_env.cpp.s
+.PHONY : src/eval_env.cpp.s
 
-files.o: files.cpp.o
-.PHONY : files.o
+src/files.o: src/files.cpp.o
+.PHONY : src/files.o
 
 # target to build an object file
-files.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/files.cpp.o
-.PHONY : files.cpp.o
+src/files.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/files.cpp.o
+.PHONY : src/files.cpp.o
 
-files.i: files.cpp.i
-.PHONY : files.i
+src/files.i: src/files.cpp.i
+.PHONY : src/files.i
 
 # target to preprocess a source file
-files.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/files.cpp.i
-.PHONY : files.cpp.i
+src/files.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/files.cpp.i
+.PHONY : src/files.cpp.i
 
-files.s: files.cpp.s
-.PHONY : files.s
+src/files.s: src/files.cpp.s
+.PHONY : src/files.s
 
 # target to generate assembly for a file
-files.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/files.cpp.s
-.PHONY : files.cpp.s
+src/files.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/files.cpp.s
+.PHONY : src/files.cpp.s
 
-forms.o: forms.cpp.o
-.PHONY : forms.o
+src/forms.o: src/forms.cpp.o
+.PHONY : src/forms.o
 
 # target to build an object file
-forms.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/forms.cpp.o
-.PHONY : forms.cpp.o
+src/forms.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/forms.cpp.o
+.PHONY : src/forms.cpp.o
 
-forms.i: forms.cpp.i
-.PHONY : forms.i
+src/forms.i: src/forms.cpp.i
+.PHONY : src/forms.i
 
 # target to preprocess a source file
-forms.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/forms.cpp.i
-.PHONY : forms.cpp.i
+src/forms.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/forms.cpp.i
+.PHONY : src/forms.cpp.i
 
-forms.s: forms.cpp.s
-.PHONY : forms.s
+src/forms.s: src/forms.cpp.s
+.PHONY : src/forms.s
 
 # target to generate assembly for a file
-forms.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/forms.cpp.s
-.PHONY : forms.cpp.s
+src/forms.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/forms.cpp.s
+.PHONY : src/forms.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
-parser.o: parser.cpp.o
-.PHONY : parser.o
+src/parser.o: src/parser.cpp.o
+.PHONY : src/parser.o
 
 # target to build an object file
-parser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/parser.cpp.o
-.PHONY : parser.cpp.o
+src/parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/parser.cpp.o
+.PHONY : src/parser.cpp.o
 
-parser.i: parser.cpp.i
-.PHONY : parser.i
+src/parser.i: src/parser.cpp.i
+.PHONY : src/parser.i
 
 # target to preprocess a source file
-parser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/parser.cpp.i
-.PHONY : parser.cpp.i
+src/parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/parser.cpp.i
+.PHONY : src/parser.cpp.i
 
-parser.s: parser.cpp.s
-.PHONY : parser.s
+src/parser.s: src/parser.cpp.s
+.PHONY : src/parser.s
 
 # target to generate assembly for a file
-parser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/parser.cpp.s
-.PHONY : parser.cpp.s
+src/parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/parser.cpp.s
+.PHONY : src/parser.cpp.s
 
-token.o: token.cpp.o
-.PHONY : token.o
+src/token.o: src/token.cpp.o
+.PHONY : src/token.o
 
 # target to build an object file
-token.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/token.cpp.o
-.PHONY : token.cpp.o
+src/token.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/token.cpp.o
+.PHONY : src/token.cpp.o
 
-token.i: token.cpp.i
-.PHONY : token.i
+src/token.i: src/token.cpp.i
+.PHONY : src/token.i
 
 # target to preprocess a source file
-token.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/token.cpp.i
-.PHONY : token.cpp.i
+src/token.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/token.cpp.i
+.PHONY : src/token.cpp.i
 
-token.s: token.cpp.s
-.PHONY : token.s
+src/token.s: src/token.cpp.s
+.PHONY : src/token.s
 
 # target to generate assembly for a file
-token.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/token.cpp.s
-.PHONY : token.cpp.s
+src/token.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/token.cpp.s
+.PHONY : src/token.cpp.s
 
-tokenizer.o: tokenizer.cpp.o
-.PHONY : tokenizer.o
+src/tokenizer.o: src/tokenizer.cpp.o
+.PHONY : src/tokenizer.o
 
 # target to build an object file
-tokenizer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/tokenizer.cpp.o
-.PHONY : tokenizer.cpp.o
+src/tokenizer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/tokenizer.cpp.o
+.PHONY : src/tokenizer.cpp.o
 
-tokenizer.i: tokenizer.cpp.i
-.PHONY : tokenizer.i
+src/tokenizer.i: src/tokenizer.cpp.i
+.PHONY : src/tokenizer.i
 
 # target to preprocess a source file
-tokenizer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/tokenizer.cpp.i
-.PHONY : tokenizer.cpp.i
+src/tokenizer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/tokenizer.cpp.i
+.PHONY : src/tokenizer.cpp.i
 
-tokenizer.s: tokenizer.cpp.s
-.PHONY : tokenizer.s
+src/tokenizer.s: src/tokenizer.cpp.s
+.PHONY : src/tokenizer.s
 
 # target to generate assembly for a file
-tokenizer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/tokenizer.cpp.s
-.PHONY : tokenizer.cpp.s
+src/tokenizer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/tokenizer.cpp.s
+.PHONY : src/tokenizer.cpp.s
 
-value.o: value.cpp.o
-.PHONY : value.o
+src/value.o: src/value.cpp.o
+.PHONY : src/value.o
 
 # target to build an object file
-value.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/value.cpp.o
-.PHONY : value.cpp.o
+src/value.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/value.cpp.o
+.PHONY : src/value.cpp.o
 
-value.i: value.cpp.i
-.PHONY : value.i
+src/value.i: src/value.cpp.i
+.PHONY : src/value.i
 
 # target to preprocess a source file
-value.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/value.cpp.i
-.PHONY : value.cpp.i
+src/value.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/value.cpp.i
+.PHONY : src/value.cpp.i
 
-value.s: value.cpp.s
-.PHONY : value.s
+src/value.s: src/value.cpp.s
+.PHONY : src/value.s
 
 # target to generate assembly for a file
-value.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/value.cpp.s
-.PHONY : value.cpp.s
+src/value.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lisp.dir/build.make CMakeFiles/lisp.dir/src/value.cpp.s
+.PHONY : src/value.cpp.s
 
 # Help Target
 help:
@@ -378,36 +378,36 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... lisp"
-	@echo "... builtins.o"
-	@echo "... builtins.i"
-	@echo "... builtins.s"
-	@echo "... error.o"
-	@echo "... error.i"
-	@echo "... error.s"
-	@echo "... eval_env.o"
-	@echo "... eval_env.i"
-	@echo "... eval_env.s"
-	@echo "... files.o"
-	@echo "... files.i"
-	@echo "... files.s"
-	@echo "... forms.o"
-	@echo "... forms.i"
-	@echo "... forms.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... parser.o"
-	@echo "... parser.i"
-	@echo "... parser.s"
-	@echo "... token.o"
-	@echo "... token.i"
-	@echo "... token.s"
-	@echo "... tokenizer.o"
-	@echo "... tokenizer.i"
-	@echo "... tokenizer.s"
-	@echo "... value.o"
-	@echo "... value.i"
-	@echo "... value.s"
+	@echo "... src/builtins.o"
+	@echo "... src/builtins.i"
+	@echo "... src/builtins.s"
+	@echo "... src/error.o"
+	@echo "... src/error.i"
+	@echo "... src/error.s"
+	@echo "... src/eval_env.o"
+	@echo "... src/eval_env.i"
+	@echo "... src/eval_env.s"
+	@echo "... src/files.o"
+	@echo "... src/files.i"
+	@echo "... src/files.s"
+	@echo "... src/forms.o"
+	@echo "... src/forms.i"
+	@echo "... src/forms.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/parser.o"
+	@echo "... src/parser.i"
+	@echo "... src/parser.s"
+	@echo "... src/token.o"
+	@echo "... src/token.i"
+	@echo "... src/token.s"
+	@echo "... src/tokenizer.o"
+	@echo "... src/tokenizer.i"
+	@echo "... src/tokenizer.s"
+	@echo "... src/value.o"
+	@echo "... src/value.i"
+	@echo "... src/value.s"
 .PHONY : help
 
 

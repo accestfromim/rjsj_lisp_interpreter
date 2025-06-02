@@ -69,172 +69,172 @@ include CMakeFiles/lisp.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/lisp.dir/flags.make
 
-CMakeFiles/lisp.dir/error.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/error.cpp.o: error.cpp
-CMakeFiles/lisp.dir/error.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lisp.dir/error.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/error.cpp.o -MF CMakeFiles/lisp.dir/error.cpp.o.d -o CMakeFiles/lisp.dir/error.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/error.cpp
+CMakeFiles/lisp.dir/src/error.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/error.cpp.o: src/error.cpp
+CMakeFiles/lisp.dir/src/error.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lisp.dir/src/error.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/error.cpp.o -MF CMakeFiles/lisp.dir/src/error.cpp.o.d -o CMakeFiles/lisp.dir/src/error.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/error.cpp
 
-CMakeFiles/lisp.dir/error.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/error.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/error.cpp > CMakeFiles/lisp.dir/error.cpp.i
+CMakeFiles/lisp.dir/src/error.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/error.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/error.cpp > CMakeFiles/lisp.dir/src/error.cpp.i
 
-CMakeFiles/lisp.dir/error.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/error.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/error.cpp -o CMakeFiles/lisp.dir/error.cpp.s
+CMakeFiles/lisp.dir/src/error.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/error.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/error.cpp -o CMakeFiles/lisp.dir/src/error.cpp.s
 
-CMakeFiles/lisp.dir/main.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/main.cpp.o: main.cpp
-CMakeFiles/lisp.dir/main.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lisp.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/main.cpp.o -MF CMakeFiles/lisp.dir/main.cpp.o.d -o CMakeFiles/lisp.dir/main.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/main.cpp
+CMakeFiles/lisp.dir/src/main.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/main.cpp.o: src/main.cpp
+CMakeFiles/lisp.dir/src/main.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lisp.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/main.cpp.o -MF CMakeFiles/lisp.dir/src/main.cpp.o.d -o CMakeFiles/lisp.dir/src/main.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/main.cpp
 
-CMakeFiles/lisp.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/main.cpp > CMakeFiles/lisp.dir/main.cpp.i
+CMakeFiles/lisp.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/main.cpp > CMakeFiles/lisp.dir/src/main.cpp.i
 
-CMakeFiles/lisp.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/main.cpp -o CMakeFiles/lisp.dir/main.cpp.s
+CMakeFiles/lisp.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/main.cpp -o CMakeFiles/lisp.dir/src/main.cpp.s
 
-CMakeFiles/lisp.dir/parser.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/parser.cpp.o: parser.cpp
-CMakeFiles/lisp.dir/parser.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/lisp.dir/parser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/parser.cpp.o -MF CMakeFiles/lisp.dir/parser.cpp.o.d -o CMakeFiles/lisp.dir/parser.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/parser.cpp
+CMakeFiles/lisp.dir/src/parser.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/parser.cpp.o: src/parser.cpp
+CMakeFiles/lisp.dir/src/parser.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/lisp.dir/src/parser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/parser.cpp.o -MF CMakeFiles/lisp.dir/src/parser.cpp.o.d -o CMakeFiles/lisp.dir/src/parser.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/parser.cpp
 
-CMakeFiles/lisp.dir/parser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/parser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/parser.cpp > CMakeFiles/lisp.dir/parser.cpp.i
+CMakeFiles/lisp.dir/src/parser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/parser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/parser.cpp > CMakeFiles/lisp.dir/src/parser.cpp.i
 
-CMakeFiles/lisp.dir/parser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/parser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/parser.cpp -o CMakeFiles/lisp.dir/parser.cpp.s
+CMakeFiles/lisp.dir/src/parser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/parser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/parser.cpp -o CMakeFiles/lisp.dir/src/parser.cpp.s
 
-CMakeFiles/lisp.dir/builtins.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/builtins.cpp.o: builtins.cpp
-CMakeFiles/lisp.dir/builtins.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/lisp.dir/builtins.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/builtins.cpp.o -MF CMakeFiles/lisp.dir/builtins.cpp.o.d -o CMakeFiles/lisp.dir/builtins.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/builtins.cpp
+CMakeFiles/lisp.dir/src/builtins.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/builtins.cpp.o: src/builtins.cpp
+CMakeFiles/lisp.dir/src/builtins.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/lisp.dir/src/builtins.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/builtins.cpp.o -MF CMakeFiles/lisp.dir/src/builtins.cpp.o.d -o CMakeFiles/lisp.dir/src/builtins.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/builtins.cpp
 
-CMakeFiles/lisp.dir/builtins.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/builtins.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/builtins.cpp > CMakeFiles/lisp.dir/builtins.cpp.i
+CMakeFiles/lisp.dir/src/builtins.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/builtins.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/builtins.cpp > CMakeFiles/lisp.dir/src/builtins.cpp.i
 
-CMakeFiles/lisp.dir/builtins.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/builtins.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/builtins.cpp -o CMakeFiles/lisp.dir/builtins.cpp.s
+CMakeFiles/lisp.dir/src/builtins.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/builtins.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/builtins.cpp -o CMakeFiles/lisp.dir/src/builtins.cpp.s
 
-CMakeFiles/lisp.dir/eval_env.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/eval_env.cpp.o: eval_env.cpp
-CMakeFiles/lisp.dir/eval_env.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/lisp.dir/eval_env.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/eval_env.cpp.o -MF CMakeFiles/lisp.dir/eval_env.cpp.o.d -o CMakeFiles/lisp.dir/eval_env.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/eval_env.cpp
+CMakeFiles/lisp.dir/src/eval_env.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/eval_env.cpp.o: src/eval_env.cpp
+CMakeFiles/lisp.dir/src/eval_env.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/lisp.dir/src/eval_env.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/eval_env.cpp.o -MF CMakeFiles/lisp.dir/src/eval_env.cpp.o.d -o CMakeFiles/lisp.dir/src/eval_env.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/eval_env.cpp
 
-CMakeFiles/lisp.dir/eval_env.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/eval_env.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/eval_env.cpp > CMakeFiles/lisp.dir/eval_env.cpp.i
+CMakeFiles/lisp.dir/src/eval_env.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/eval_env.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/eval_env.cpp > CMakeFiles/lisp.dir/src/eval_env.cpp.i
 
-CMakeFiles/lisp.dir/eval_env.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/eval_env.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/eval_env.cpp -o CMakeFiles/lisp.dir/eval_env.cpp.s
+CMakeFiles/lisp.dir/src/eval_env.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/eval_env.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/eval_env.cpp -o CMakeFiles/lisp.dir/src/eval_env.cpp.s
 
-CMakeFiles/lisp.dir/files.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/files.cpp.o: files.cpp
-CMakeFiles/lisp.dir/files.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/lisp.dir/files.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/files.cpp.o -MF CMakeFiles/lisp.dir/files.cpp.o.d -o CMakeFiles/lisp.dir/files.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/files.cpp
+CMakeFiles/lisp.dir/src/files.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/files.cpp.o: src/files.cpp
+CMakeFiles/lisp.dir/src/files.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/lisp.dir/src/files.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/files.cpp.o -MF CMakeFiles/lisp.dir/src/files.cpp.o.d -o CMakeFiles/lisp.dir/src/files.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/files.cpp
 
-CMakeFiles/lisp.dir/files.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/files.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/files.cpp > CMakeFiles/lisp.dir/files.cpp.i
+CMakeFiles/lisp.dir/src/files.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/files.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/files.cpp > CMakeFiles/lisp.dir/src/files.cpp.i
 
-CMakeFiles/lisp.dir/files.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/files.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/files.cpp -o CMakeFiles/lisp.dir/files.cpp.s
+CMakeFiles/lisp.dir/src/files.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/files.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/files.cpp -o CMakeFiles/lisp.dir/src/files.cpp.s
 
-CMakeFiles/lisp.dir/forms.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/forms.cpp.o: forms.cpp
-CMakeFiles/lisp.dir/forms.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/lisp.dir/forms.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/forms.cpp.o -MF CMakeFiles/lisp.dir/forms.cpp.o.d -o CMakeFiles/lisp.dir/forms.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/forms.cpp
+CMakeFiles/lisp.dir/src/forms.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/forms.cpp.o: src/forms.cpp
+CMakeFiles/lisp.dir/src/forms.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/lisp.dir/src/forms.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/forms.cpp.o -MF CMakeFiles/lisp.dir/src/forms.cpp.o.d -o CMakeFiles/lisp.dir/src/forms.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/forms.cpp
 
-CMakeFiles/lisp.dir/forms.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/forms.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/forms.cpp > CMakeFiles/lisp.dir/forms.cpp.i
+CMakeFiles/lisp.dir/src/forms.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/forms.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/forms.cpp > CMakeFiles/lisp.dir/src/forms.cpp.i
 
-CMakeFiles/lisp.dir/forms.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/forms.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/forms.cpp -o CMakeFiles/lisp.dir/forms.cpp.s
+CMakeFiles/lisp.dir/src/forms.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/forms.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/forms.cpp -o CMakeFiles/lisp.dir/src/forms.cpp.s
 
-CMakeFiles/lisp.dir/token.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/token.cpp.o: token.cpp
-CMakeFiles/lisp.dir/token.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/lisp.dir/token.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/token.cpp.o -MF CMakeFiles/lisp.dir/token.cpp.o.d -o CMakeFiles/lisp.dir/token.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/token.cpp
+CMakeFiles/lisp.dir/src/token.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/token.cpp.o: src/token.cpp
+CMakeFiles/lisp.dir/src/token.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/lisp.dir/src/token.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/token.cpp.o -MF CMakeFiles/lisp.dir/src/token.cpp.o.d -o CMakeFiles/lisp.dir/src/token.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/token.cpp
 
-CMakeFiles/lisp.dir/token.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/token.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/token.cpp > CMakeFiles/lisp.dir/token.cpp.i
+CMakeFiles/lisp.dir/src/token.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/token.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/token.cpp > CMakeFiles/lisp.dir/src/token.cpp.i
 
-CMakeFiles/lisp.dir/token.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/token.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/token.cpp -o CMakeFiles/lisp.dir/token.cpp.s
+CMakeFiles/lisp.dir/src/token.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/token.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/token.cpp -o CMakeFiles/lisp.dir/src/token.cpp.s
 
-CMakeFiles/lisp.dir/tokenizer.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/tokenizer.cpp.o: tokenizer.cpp
-CMakeFiles/lisp.dir/tokenizer.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/lisp.dir/tokenizer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/tokenizer.cpp.o -MF CMakeFiles/lisp.dir/tokenizer.cpp.o.d -o CMakeFiles/lisp.dir/tokenizer.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/tokenizer.cpp
+CMakeFiles/lisp.dir/src/tokenizer.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/tokenizer.cpp.o: src/tokenizer.cpp
+CMakeFiles/lisp.dir/src/tokenizer.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/lisp.dir/src/tokenizer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/tokenizer.cpp.o -MF CMakeFiles/lisp.dir/src/tokenizer.cpp.o.d -o CMakeFiles/lisp.dir/src/tokenizer.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/tokenizer.cpp
 
-CMakeFiles/lisp.dir/tokenizer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/tokenizer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/tokenizer.cpp > CMakeFiles/lisp.dir/tokenizer.cpp.i
+CMakeFiles/lisp.dir/src/tokenizer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/tokenizer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/tokenizer.cpp > CMakeFiles/lisp.dir/src/tokenizer.cpp.i
 
-CMakeFiles/lisp.dir/tokenizer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/tokenizer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/tokenizer.cpp -o CMakeFiles/lisp.dir/tokenizer.cpp.s
+CMakeFiles/lisp.dir/src/tokenizer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/tokenizer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/tokenizer.cpp -o CMakeFiles/lisp.dir/src/tokenizer.cpp.s
 
-CMakeFiles/lisp.dir/value.cpp.o: CMakeFiles/lisp.dir/flags.make
-CMakeFiles/lisp.dir/value.cpp.o: value.cpp
-CMakeFiles/lisp.dir/value.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/lisp.dir/value.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/value.cpp.o -MF CMakeFiles/lisp.dir/value.cpp.o.d -o CMakeFiles/lisp.dir/value.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/value.cpp
+CMakeFiles/lisp.dir/src/value.cpp.o: CMakeFiles/lisp.dir/flags.make
+CMakeFiles/lisp.dir/src/value.cpp.o: src/value.cpp
+CMakeFiles/lisp.dir/src/value.cpp.o: CMakeFiles/lisp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/lisp.dir/src/value.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/lisp.dir/src/value.cpp.o -MF CMakeFiles/lisp.dir/src/value.cpp.o.d -o CMakeFiles/lisp.dir/src/value.cpp.o -c /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/value.cpp
 
-CMakeFiles/lisp.dir/value.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/value.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/value.cpp > CMakeFiles/lisp.dir/value.cpp.i
+CMakeFiles/lisp.dir/src/value.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lisp.dir/src/value.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/value.cpp > CMakeFiles/lisp.dir/src/value.cpp.i
 
-CMakeFiles/lisp.dir/value.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/value.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/value.cpp -o CMakeFiles/lisp.dir/value.cpp.s
+CMakeFiles/lisp.dir/src/value.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lisp.dir/src/value.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/src/value.cpp -o CMakeFiles/lisp.dir/src/value.cpp.s
 
 # Object files for target lisp
 lisp_OBJECTS = \
-"CMakeFiles/lisp.dir/error.cpp.o" \
-"CMakeFiles/lisp.dir/main.cpp.o" \
-"CMakeFiles/lisp.dir/parser.cpp.o" \
-"CMakeFiles/lisp.dir/builtins.cpp.o" \
-"CMakeFiles/lisp.dir/eval_env.cpp.o" \
-"CMakeFiles/lisp.dir/files.cpp.o" \
-"CMakeFiles/lisp.dir/forms.cpp.o" \
-"CMakeFiles/lisp.dir/token.cpp.o" \
-"CMakeFiles/lisp.dir/tokenizer.cpp.o" \
-"CMakeFiles/lisp.dir/value.cpp.o"
+"CMakeFiles/lisp.dir/src/error.cpp.o" \
+"CMakeFiles/lisp.dir/src/main.cpp.o" \
+"CMakeFiles/lisp.dir/src/parser.cpp.o" \
+"CMakeFiles/lisp.dir/src/builtins.cpp.o" \
+"CMakeFiles/lisp.dir/src/eval_env.cpp.o" \
+"CMakeFiles/lisp.dir/src/files.cpp.o" \
+"CMakeFiles/lisp.dir/src/forms.cpp.o" \
+"CMakeFiles/lisp.dir/src/token.cpp.o" \
+"CMakeFiles/lisp.dir/src/tokenizer.cpp.o" \
+"CMakeFiles/lisp.dir/src/value.cpp.o"
 
 # External object files for target lisp
 lisp_EXTERNAL_OBJECTS =
 
-bin/lisp: CMakeFiles/lisp.dir/error.cpp.o
-bin/lisp: CMakeFiles/lisp.dir/main.cpp.o
-bin/lisp: CMakeFiles/lisp.dir/parser.cpp.o
-bin/lisp: CMakeFiles/lisp.dir/builtins.cpp.o
-bin/lisp: CMakeFiles/lisp.dir/eval_env.cpp.o
-bin/lisp: CMakeFiles/lisp.dir/files.cpp.o
-bin/lisp: CMakeFiles/lisp.dir/forms.cpp.o
-bin/lisp: CMakeFiles/lisp.dir/token.cpp.o
-bin/lisp: CMakeFiles/lisp.dir/tokenizer.cpp.o
-bin/lisp: CMakeFiles/lisp.dir/value.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/error.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/main.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/parser.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/builtins.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/eval_env.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/files.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/forms.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/token.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/tokenizer.cpp.o
+bin/lisp: CMakeFiles/lisp.dir/src/value.cpp.o
 bin/lisp: CMakeFiles/lisp.dir/build.make
 bin/lisp: CMakeFiles/lisp.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/浏览器下载/mini_lisp/rjsj_lisp_interpreter/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable bin/lisp"
